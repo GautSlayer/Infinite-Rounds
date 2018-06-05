@@ -15,12 +15,12 @@ public class Round_End : MonoBehaviour {
     {
         if (lastRoundWin)
         {
-            lastRoundResult.text = "Round Won !!";
+            lastRoundResult.text = "Round "+ GameManager.roundNumber + " Won !!";
             nextRound.GetComponentInChildren<Text>().text = "Go Harder";
         }
         else
         {
-            lastRoundResult.text = "Round lost !!";
+            lastRoundResult.text = "Round " + GameManager.roundNumber + " lost !!";
             nextRound.GetComponentInChildren<Text>().text = "Retry";
         }
     }

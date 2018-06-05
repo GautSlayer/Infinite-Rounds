@@ -7,6 +7,7 @@ using UnityEngine.SceneManagement;
 public class GameManager : MonoBehaviour {
 
     public static GameManager instance;
+    public static int roundNumber = 0;
 
     public GameObject enemyPrefab;//Will be replaced with list of enemies in waves
     public int numbOfEnemyPerRound = 10;
@@ -18,6 +19,7 @@ public class GameManager : MonoBehaviour {
     private int enemySpawnedCount;
     private int enemyKilledCount;
     private bool playerAlive;
+
     void Awake()
     {
         if (instance != null)
@@ -71,6 +73,7 @@ public class GameManager : MonoBehaviour {
         enemySpawnedCount = 0;
         enemyKilledCount = 0;
         playerAlive = true;
+        roundNumber++;
     }
 
     public void EnemyKilled()
