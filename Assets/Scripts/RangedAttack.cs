@@ -17,7 +17,7 @@ public class RangedAttack : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-        if (Input.GetButton("Fire1") && Time.time >= nextFire)
+        if ((Input.GetButton("AimHorizontal") || Input.GetButton("AimVertical")) && Time.time >= nextFire)
         {
             //Set available time for next shoot
             nextFire = Time.time + fireRate;
