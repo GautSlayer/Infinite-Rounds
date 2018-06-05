@@ -26,7 +26,23 @@ public class Health : MonoBehaviour {
         //need a proper death animation
         if(currentHealth <= 0)
         {
-            Destroy(this.transform.root.gameObject);
+            GameManager gameManager = GameManager.instance;
+            if(gameManager != null)
+            {
+                if (this.transform.root.gameObject.CompareTag("Player")) //Player died
+                {
+                    gameManager.PlayerDied();
+                }
+                else if (this.transform.root.gameObject.CompareTag("Enemy")) //Enemy died
+                {
+                    gameManager.EnemyKilled();
+                    Destroy(this.transform.root.gameObject);
+                }
+            }
+            else
+            {
+                Debug.Log("Error, no GameManager found");
+            }
         }
     }
 }
