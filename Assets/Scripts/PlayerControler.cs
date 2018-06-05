@@ -15,7 +15,7 @@ public class PlayerControler : MonoBehaviour {
     // Use this for initialization
     void Start () {
         myRb = GetComponent<Rigidbody2D>();
-        OrienteProjectileSpawn(0);
+        OrienteProjectileSpawn(270);
 	}
 	
     private void FixedUpdate()
@@ -35,43 +35,43 @@ public class PlayerControler : MonoBehaviour {
         Vector2 startPos = transform.position;
         myRb.MovePosition(startPos + movement);
 
-        //if fire2 is not pressed Oriente the projectile spawn according to player's movement
-        //if fire2 pressed, player move, but keep shooting in the same direction
+        //Get raw input ie 1,0,-1 with keyboard
+        float aimVertical = Input.GetAxisRaw("AimVertical");
+        float aimHorizontal = Input.GetAxisRaw("AimHorizontal");
+
+        //Oriente the projectile spawn according directionnal arrow
         //Should might be done in update and ot fixedUpdate
-        if (!Input.GetButton("Fire2"))
+        if (aimVertical == 0 && aimHorizontal > 0) //right
         {
-            if (vertical == 0 && horizontal > 0) //right
-            {
-                OrienteProjectileSpawn(0);
-            }
-            if (vertical == 0 && horizontal < 0) //left
-            {
-                OrienteProjectileSpawn(180);
-            }
-            if (vertical > 0 && horizontal == 0) //up
-            {
-                OrienteProjectileSpawn(90);
-            }
-            if (vertical < 0 && horizontal == 0) //down
-            {
-                OrienteProjectileSpawn(270);
-            }
-            if (vertical > 0 && horizontal > 0) //right + up
-            {
-                OrienteProjectileSpawn(45);
-            }
-            if (vertical > 0 && horizontal < 0) //left + up
-            {
-                OrienteProjectileSpawn(135);
-            }
-            if (vertical < 0 && horizontal > 0) //right + down
-            {
-                OrienteProjectileSpawn(315);
-            }
-            if (vertical < 0 && horizontal < 0) //left + down
-            {
-                OrienteProjectileSpawn(225);
-            }
+            OrienteProjectileSpawn(0);
+        }
+        if (aimVertical == 0 && aimHorizontal < 0) //left
+        {
+            OrienteProjectileSpawn(180);
+        }
+        if (aimVertical > 0 && aimHorizontal == 0) //up
+        {
+            OrienteProjectileSpawn(90);
+        }
+        if (aimVertical < 0 && aimHorizontal == 0) //down
+        {
+            OrienteProjectileSpawn(270);
+        }
+        if (aimVertical > 0 && aimHorizontal > 0) //right + up
+        {
+            OrienteProjectileSpawn(45);
+        }
+        if (aimVertical > 0 && aimHorizontal < 0) //left + up
+        {
+            OrienteProjectileSpawn(135);
+        }
+        if (aimVertical < 0 && aimHorizontal > 0) //right + down
+        {
+            OrienteProjectileSpawn(315);
+        }
+        if (aimVertical < 0 && aimHorizontal < 0) //left + down
+        {
+            OrienteProjectileSpawn(225);
         }
     }
 
