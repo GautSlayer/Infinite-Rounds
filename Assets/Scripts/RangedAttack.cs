@@ -7,7 +7,7 @@ public class RangedAttack : MonoBehaviour {
     public Transform projectileSpawn;
     public GameObject projectilePrefab;
     public float fireRate = 1;
-
+    public bool handicap=false;
     private float nextFire;
 
 	// Use this for initialization
@@ -17,7 +17,7 @@ public class RangedAttack : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-        if ((Input.GetButton("AimHorizontal") || Input.GetButton("AimVertical")) && Time.time >= nextFire)
+        if (!handicap&&(Input.GetButton("AimHorizontal") || Input.GetButton("AimVertical")) && Time.time >= nextFire)
         {
             //Set available time for next shoot
             nextFire = Time.time + fireRate;

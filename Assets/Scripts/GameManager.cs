@@ -14,6 +14,8 @@ public class GameManager : MonoBehaviour {
     public GameObject player;
     public float spawnRate = 1;
     public float randomRadiusSpawn;
+    public float perturbationFrequency=20;
+    public float lastPerturbation=0;
 
     private float nextSpawn;
     private int enemySpawnedCount;
@@ -33,10 +35,18 @@ public class GameManager : MonoBehaviour {
     private void Start()
     {
         NewRound();
+        lastPerturbation=Time.time+10;
     }
 
     // Update is called once per frame
     void Update () {
+        // Gestion dysfonctionnement
+        if(Time.time>=lastPerturbation+perturbationFrequency+Random.Range(-5.0f,5.0f)){
+            Debug.Log("   ");
+            lastPerturbation=Time.time;
+            GameObject.FindWithTag("Player").GetComponent<PlayerControler>().StartPerturbation(Random.Range(1,3));
+            
+        }
         //Temporary infinite spawning of enemies
         if(playerAlive)
         {

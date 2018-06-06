@@ -9,6 +9,10 @@ public class PlayerControler : MonoBehaviour {
     public float projectileSpawnOffsetX;
     public float projectileSpawnOffsetY;
 
+    // Gestion des dysfonctionnement : 0- aucune ; 1- tir ; 2-mvt_horizontal ; 3-mvt_vertical 
+    public int interdictions = 0;
+    public float recov_time=5;
+    private float recov_interdiction=0;
     private Rigidbody2D myRb;
     private Vector2 movement;
 
@@ -20,6 +24,10 @@ public class PlayerControler : MonoBehaviour {
 	
     private void FixedUpdate()
     {
+        if(interdictions!=0 && Time.time>recov_interdiction){
+            EndPerturbation();
+        }
+
         if(myRb == null)
         {
             Debug.Log("Player is missing a rigidbody2D");
@@ -31,7 +39,15 @@ public class PlayerControler : MonoBehaviour {
         float horizontal = Input.GetAxisRaw("Horizontal");
 
         //Move the player with rigidbody.MovePosition()
-        movement = (new Vector2(horizontal, vertical).normalized) * (movementSpeed /1000);
+       if(interdictions==2){
+            movement = (new Vector2(0, vertical).normalized) * (movementSpeed /1000);
+        }
+        else if(interdictions ==3){
+            movement = (new Vector2(horizontal, 0).normalized) * (movementSpeed /1000);
+        }
+        else
+            movement = (new Vector2(horizontal, vertical).normalized) * (movementSpeed /1000);
+
         Vector2 startPos = transform.position;
         myRb.MovePosition(startPos + movement);
 
@@ -141,4 +157,26 @@ public class PlayerControler : MonoBehaviour {
         projectileSpawn.position = this.transform.position + newPos;
         projectileSpawn.rotation = Quaternion.Euler(0, 0, zRot);
     }
+    public void StartPerturbation(int interdiction){
+        Debug.Log("Handicap : "+interdiction );
+        if(interdictions==0){
+            if(interdiction==1){
+                gameObject.GetComponent<RangedAttack>().handicap=true;
+                Debug.Log("fin des tirs");
+            }
+            interdictions=interdiction;
+            recov_interdiction=Time.time+recov_time;
+            
+        }
+    }
+
+    void EndPerturbation(){
+        Debug.Log("Fin de perturbation : "+interdictions);
+        if(interdictions==1){
+            gameObject.GetComponent<RangedAttack>().handicap=false;
+        }
+        interdictions=0;
+    }
+
+
 }
