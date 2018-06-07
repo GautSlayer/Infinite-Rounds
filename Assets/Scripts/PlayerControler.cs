@@ -9,11 +9,13 @@ public class PlayerControler : MonoBehaviour {
     public Transform projectileSpawn;
     public float projectileSpawnOffsetX;
     public float projectileSpawnOffsetY;
+    public Text interdictionInfo;
 
     // Gestion des dysfonctionnement : 0- aucune ; 1- tir ; 2-mvt_horizontal ; 3-mvt_vertical 
     public int interdictions = 0;
     public float recov_time=5;
     private float recov_interdiction=0;
+
     private Rigidbody2D myRb;
     private Vector2 movement;
 
@@ -21,6 +23,7 @@ public class PlayerControler : MonoBehaviour {
     void Start () {
         myRb = GetComponent<Rigidbody2D>();
         OrienteProjectileSpawn(270);
+        EndPerturbation();
 	}
 	
     private void FixedUpdate()
@@ -158,19 +161,18 @@ public class PlayerControler : MonoBehaviour {
         projectileSpawn.position = this.transform.position + newPos;
         projectileSpawn.rotation = Quaternion.Euler(0, 0, zRot);
     }
+
     public void StartPerturbation(int interdiction){
         Debug.Log("Handicap : "+interdiction );
         if(interdictions==0){
-
-            Text StatusText = this.transform.GetComponentInChildren<Text>();
-            if(StatusText != null)
+            if(interdictionInfo != null)
             {
                 if(interdiction==1)
-                    StatusText.text= "Tir impossible";
+                    interdictionInfo.text= "Tir impossible";
                 else if(interdiction==2)
-                    StatusText.text="Mvt horizontal impossible";
+                    interdictionInfo.text="Mvt horizontal impossible";
                 else if(interdiction==3)
-                    StatusText.text="Mvt vertical impossible";
+                    interdictionInfo.text="Mvt vertical impossible";
                 
             }
             else
@@ -191,10 +193,9 @@ public class PlayerControler : MonoBehaviour {
 
     void EndPerturbation(){
 
-        Text StatusText = this.transform.GetComponentInChildren<Text>();
-            if(StatusText != null)
-            {         
-                StatusText.text= "";
+            if(interdictionInfo != null)
+            {
+                interdictionInfo.text= "";
             }
             else
             {
