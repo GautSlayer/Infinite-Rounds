@@ -14,6 +14,8 @@ public class GameManager : MonoBehaviour {
     public GameObject player;
     public float spawnRate = 1;
     public float randomRadiusSpawn;
+    //Gestion perturbation
+    public float initialPerturbationOffset=5;
     public float perturbationFrequency=20;
     public float lastPerturbation=0;
 
@@ -35,7 +37,7 @@ public class GameManager : MonoBehaviour {
     private void Start()
     {
         NewRound();
-        lastPerturbation=Time.time+10;
+        lastPerturbation=Time.time+initialPerturbationOffset;
     }
 
     // Update is called once per frame

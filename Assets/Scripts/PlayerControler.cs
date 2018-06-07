@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class PlayerControler : MonoBehaviour {
 
@@ -160,6 +161,24 @@ public class PlayerControler : MonoBehaviour {
     public void StartPerturbation(int interdiction){
         Debug.Log("Handicap : "+interdiction );
         if(interdictions==0){
+
+            Text StatusText = this.transform.GetComponentInChildren<Text>();
+            if(StatusText != null)
+            {
+                if(interdiction==1)
+                    StatusText.text= "Tir impossible";
+                else if(interdiction==2)
+                    StatusText.text="Mvt horizontal impossible";
+                else if(interdiction==3)
+                    StatusText.text="Mvt vertical impossible";
+                
+            }
+            else
+            {
+                Debug.Log("GameObject Tagged Player miss the StatusText");
+            }
+
+
             if(interdiction==1){
                 gameObject.GetComponent<RangedAttack>().handicap=true;
                 Debug.Log("fin des tirs");
@@ -171,6 +190,17 @@ public class PlayerControler : MonoBehaviour {
     }
 
     void EndPerturbation(){
+
+        Text StatusText = this.transform.GetComponentInChildren<Text>();
+            if(StatusText != null)
+            {         
+                StatusText.text= "";
+            }
+            else
+            {
+                Debug.Log("GameObject Tagged Player miss the StatusText");
+            }
+        
         Debug.Log("Fin de perturbation : "+interdictions);
         if(interdictions==1){
             gameObject.GetComponent<RangedAttack>().handicap=false;
