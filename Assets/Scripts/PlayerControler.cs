@@ -36,7 +36,7 @@ public class PlayerControler : MonoBehaviour {
         memoryBoost =new List<Items.Type>();
         magnitudeBoost= new Dictionary<Items.Type, float>();
         RangedAttack=gameObject.GetComponent<RangedAttack>();
-        health=gameObject.GetComponent<Health>();
+        health=gameObject.GetComponentInChildren<Health>();
         myRb = GetComponent<Rigidbody2D>();
         OrienteProjectileSpawn(270);
         EndPerturbation();
@@ -47,13 +47,15 @@ public class PlayerControler : MonoBehaviour {
     private void FixedUpdate()
     {
         if(tempBoost.Count!=0){
-            foreach(var t in tempBoost){
-                if(t.Value>0){
-                    tempBoost[t.Key]-=Time.deltaTime;   // Didn't find better way
+            List<Items.Type> keys = new List<Items.Type> (tempBoost.Keys);
+            
+            foreach(Items.Type t in keys){
+                if(tempBoost[t]>0){
+                    tempBoost[t]-=Time.deltaTime;   // Didn't find better way
                     
                 }
                 else{
-                    RemoveBoost(t.Key);
+                    RemoveBoost(t);
                 }
             }
         }
@@ -329,34 +331,37 @@ public class PlayerControler : MonoBehaviour {
                 
             }
             else{                               // Sinon on l'ajoute à notre base de boost
+            
                 memoryBoost.Add(item);
                 tempBoost.Add(item,tps);
                 magnitudeBoost.Add(item,magn);
-            }
+                
             
-            switch(item){
-                case Items.Type.FIRERATE:       // necessite acces à RangedAttacks
-                RangedAttack.BoostFireRate(magn);
-                break;
-                
-                case Items.Type.INVICIBILITY:   // necessite acces à Health
-                health.SwitchInviciblity();
-                break;
-                case Items.Type.MVTSPEED:
-                    movementSpeed+=magn;
-                break;
-                case Items.Type.POWER:          // necessite acces à RangedAttacks
-                RangedAttack.BoostDamage((int)magn);
-                break;
-                case Items.Type.REPAIR:
-                
-                break;
-                case Items.Type.WEAPON:         // necessite acces à RangedAttacks
-                
-                break;
-                default:
-                
-                break;
+            
+                switch(item){
+                    case Items.Type.FIRERATE:       // necessite acces à RangedAttacks
+                    RangedAttack.BoostFireRate(magn);
+                    break;
+                    
+                    case Items.Type.INVICIBILITY:   // necessite acces à Health
+                    health.SwitchInviciblity();
+                    break;
+                    case Items.Type.MVTSPEED:
+                        movementSpeed+=magn;
+                    break;
+                    case Items.Type.POWER:          // necessite acces à RangedAttacks
+                    RangedAttack.BoostDamage((int)magn);
+                    break;
+                    case Items.Type.REPAIR:
+                    
+                    break;
+                    case Items.Type.WEAPON:         // necessite acces à RangedAttacks
+                    
+                    break;
+                    default:
+                    
+                    break;
+                }
             }
         }
     
@@ -390,14 +395,19 @@ public class PlayerControler : MonoBehaviour {
             
             break;
         }
+        
         magnitudeBoost.Remove(stat);
         tempBoost.Remove(stat);
         memoryBoost.Remove(stat);
+        
     }
 
-void OnTriggerEnter(Collider other) {
-        Items it =other.GetComponent<Items>();
-        Items.Type t = it.Type1;
-        GetBoost(t,it.Magnitude,it.Lifespan);
+void OnTriggerEnter2D(Collider2D other) {
+        if (other.tag=="Item"){
+            Items it =other.GetComponent<Items>();
+            Items.Type t = it.Type1;
+            GetBoost(t,it.Magnitude,it.Timer);
+            GameObject.Destroy(other.gameObject);
+        }
     }
 }
