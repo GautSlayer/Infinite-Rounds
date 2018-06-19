@@ -63,10 +63,10 @@ public class PlayerControler : MonoBehaviour {
             return;
         }
 
+        /*
+        //Move only in 4 directions
         float vertical = 0;
         float horizontal = 0;
-
-        //Move only in 4 directions
         //Get the lastTime vertical axe was pressed
         if (Input.GetButtonDown("Vertical"))
         {
@@ -102,8 +102,10 @@ public class PlayerControler : MonoBehaviour {
             horizontal = Input.GetAxisRaw("Horizontal");
             vertical = 0;
         }
-        
-        //float vertical = Input.GetAxisRaw("Vertical");
+        */
+
+        //Get raw input ie 1,0,-1 with keyboard
+        float vertical = Input.GetAxisRaw("Vertical");
         if(interdictions==4){
             if(vertical==-1){
                 vertical=0;
@@ -115,7 +117,8 @@ public class PlayerControler : MonoBehaviour {
                 vertical=0;
             }
         }
-        //float horizontal = Input.GetAxisRaw("Horizontal");
+        //Get raw input ie 1,0,-1 with keyboard
+        float horizontal = Input.GetAxisRaw("Horizontal");
         if(interdictions==2){
             if(horizontal==-1){
                 horizontal=0;
