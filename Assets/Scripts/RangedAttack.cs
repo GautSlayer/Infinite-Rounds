@@ -29,11 +29,20 @@ public class RangedAttack : MonoBehaviour {
             GameObject projectile = Instantiate(projectilePrefab, projectileSpawn.position, projectileSpawn.rotation);
         }
 	}
-    void BoostDamage(int value){
+    public void BoostDamage(int value){
         projectilePrefab.GetComponent<Projectile>().damage+=value;
     }
 
-    void Unboost(int value){
+    public void UnboostDamage(int value){
         projectilePrefab.GetComponent<Projectile>().damage-=value;
     }
+
+    public void BoostFireRate(float value){
+        fireRate-=value;
+    }
+
+    public void UnboostFireRate(float value){
+         fireRate+=value;
+    }
+
 }

@@ -7,7 +7,7 @@ public class Health : MonoBehaviour {
 
     public int maxHealth = 100;
     public Slider healthBar;
-
+    bool isInvicible=false;
     private int currentHealth;
 
 	// Use this for initialization
@@ -44,5 +44,18 @@ public class Health : MonoBehaviour {
                 Debug.Log("Error, no GameManager found");
             }
         }
+    }
+
+    public void Heal(int heal){
+        if(currentHealth+heal>maxHealth){
+            currentHealth=maxHealth;
+        }
+        else{
+            currentHealth+=heal;
+        }
+    }
+
+    public void SwitchInviciblity(){
+        isInvicible=!isInvicible;
     }
 }

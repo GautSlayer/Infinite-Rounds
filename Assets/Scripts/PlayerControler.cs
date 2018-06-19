@@ -18,11 +18,12 @@ public class PlayerControler : MonoBehaviour {
 
     // Gestion Boost , plusieurs boost sont possibles à la fois , mais pas deux fois le même(ça ne fait que refresh le timer)
     Dictionary<Items.Type, float> tempBoost;
-    Dictionary<Items.Type, int> magnitudeBoost;
+    Dictionary<Items.Type, float> magnitudeBoost;
     [SerializeField]List<Items.Type> memoryBoost; // principalement pour l'inspector
     
     // Communication avec les autres scripts
-    
+    RangedAttack RangedAttack;
+    Health health;
     // gestion RigidB
     private Rigidbody2D myRb;
     private Vector2 movement;
@@ -31,6 +32,8 @@ public class PlayerControler : MonoBehaviour {
 
     // Use this for initialization
     void Start () {
+        RangedAttack=gameObject.GetComponent<RangedAttack>();
+        health=gameObject.GetComponent<Health>();
         myRb = GetComponent<Rigidbody2D>();
         OrienteProjectileSpawn(270);
         EndPerturbation();
@@ -40,6 +43,16 @@ public class PlayerControler : MonoBehaviour {
 	
     private void FixedUpdate()
     {
+        foreach(var t in tempBoost){
+            if(t.Value>0){
+                tempBoost[t.Key]-=Time.deltaTime;   // Didn't find better way
+                
+            }
+            else{
+                RemoveBoost(t.Key);
+            }
+        }
+
         if(interdictions!=0 && Time.time>recov_interdiction){
             EndPerturbation();
         }
@@ -293,9 +306,10 @@ public class PlayerControler : MonoBehaviour {
         GameManager.instance.PlayerDied();
     }
 
-    private void GetBoost(Items.Type item,int magn,float tps){
+    private void GetBoost(Items.Type item,float magn,float tps){
         //// Cas du Soin
         if(item==Items.Type.HEALTH){         // necessite acces à Health
+            health.Heal((int)magn);
 
        }
 
@@ -314,17 +328,17 @@ public class PlayerControler : MonoBehaviour {
             
             switch(item){
                 case Items.Type.FIRERATE:       // necessite acces à RangedAttacks
-                
+                RangedAttack.BoostFireRate(magn);
                 break;
                 
                 case Items.Type.INVICIBILITY:   // necessite acces à Health
-                
+                health.SwitchInviciblity();
                 break;
                 case Items.Type.MVTSPEED:
                     movementSpeed+=magn;
                 break;
                 case Items.Type.POWER:          // necessite acces à RangedAttacks
-                
+                RangedAttack.BoostDamage((int)magn);
                 break;
                 case Items.Type.REPAIR:
                 
@@ -343,20 +357,20 @@ public class PlayerControler : MonoBehaviour {
     private void RemoveBoost(Items.Type stat){
         switch(stat){
             case Items.Type.FIRERATE:       // necessite acces à RangedAttacks
-            
+            RangedAttack.UnboostFireRate(magnitudeBoost[stat]);
             break;
             case Items.Type.HEALTH:         // necessite acces à Health
                 
             break;
             case Items.Type.INVICIBILITY:   // necessite acces à Health
-            
+            health.SwitchInviciblity();
             break;
             case Items.Type.MVTSPEED:
                 movementSpeed-=magnitudeBoost[stat];
 
             break;
             case Items.Type.POWER:          // necessite acces à RangedAttacks
-            
+            RangedAttack.UnboostDamage((int)magnitudeBoost[stat]);
             break;
             case Items.Type.REPAIR:
             
@@ -370,6 +384,12 @@ public class PlayerControler : MonoBehaviour {
         }
         magnitudeBoost.Remove(stat);
         tempBoost.Remove(stat);
+        memoryBoost.Remove(stat);
     }
 
+void OnTriggerEnter(Collider other) {
+        Items it =other.GetComponent<Items>();
+        Items.Type t = it.Type1;
+        GetBoost(t,it.Magnitude,it.Lifespan);
+    }
 }
