@@ -16,6 +16,14 @@ public class PlayerControler : MonoBehaviour {
     public float recov_time=5;
     private float recov_interdiction=0;
 
+    // Gestion Boost , plusieurs boost sont possibles à la fois , mais pas deux fois le même(ça ne fait que refresh le timer)
+    Dictionary<Items.Type, float> tempBoost;
+    Dictionary<Items.Type, int> magnitudeBoost;
+    [SerializeField]List<Items.Type> memoryBoost; // principalement pour l'inspector
+    
+    // Communication avec les autres scripts
+    
+    // gestion RigidB
     private Rigidbody2D myRb;
     private Vector2 movement;
     private float lastPressedAxisVert;
@@ -283,6 +291,85 @@ public class PlayerControler : MonoBehaviour {
     private void OnDestroy()
     {
         GameManager.instance.PlayerDied();
+    }
+
+    private void GetBoost(Items.Type item,int magn,float tps){
+        //// Cas du Soin
+        if(item==Items.Type.HEALTH){         // necessite acces à Health
+
+       }
+
+        //// ATTENTION : Modèle à adapter au systeme de weapon
+        else{
+            // on verifie si on a deja eu ce type de boost
+            if(memoryBoost.Contains(item)){     // Si on l'a déjà eu on refresh le timer
+                tempBoost[item]=tps;    
+                
+            }
+            else{                               // Sinon on l'ajoute à notre base de boost
+                memoryBoost.Add(item);
+                tempBoost.Add(item,tps);
+                magnitudeBoost.Add(item,magn);
+            }
+            
+            switch(item){
+                case Items.Type.FIRERATE:       // necessite acces à RangedAttacks
+                
+                break;
+                
+                case Items.Type.INVICIBILITY:   // necessite acces à Health
+                
+                break;
+                case Items.Type.MVTSPEED:
+                    movementSpeed+=magn;
+                break;
+                case Items.Type.POWER:          // necessite acces à RangedAttacks
+                
+                break;
+                case Items.Type.REPAIR:
+                
+                break;
+                case Items.Type.WEAPON:         // necessite acces à RangedAttacks
+                
+                break;
+                default:
+                
+                break;
+            }
+        }
+    
+    }
+
+    private void RemoveBoost(Items.Type stat){
+        switch(stat){
+            case Items.Type.FIRERATE:       // necessite acces à RangedAttacks
+            
+            break;
+            case Items.Type.HEALTH:         // necessite acces à Health
+                
+            break;
+            case Items.Type.INVICIBILITY:   // necessite acces à Health
+            
+            break;
+            case Items.Type.MVTSPEED:
+                movementSpeed-=magnitudeBoost[stat];
+
+            break;
+            case Items.Type.POWER:          // necessite acces à RangedAttacks
+            
+            break;
+            case Items.Type.REPAIR:
+            
+            break;
+            case Items.Type.WEAPON:         // necessite acces à RangedAttacks
+            
+            break;
+            default:
+            
+            break;
+        }
+        magnitudeBoost.Remove(stat);
+        tempBoost.Remove(stat);
     }
 
 }

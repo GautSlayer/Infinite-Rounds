@@ -6,6 +6,9 @@ public class RangedAttack : MonoBehaviour {
 
     public Transform projectileSpawn;
     public GameObject projectilePrefab;
+    enum Weapon {DEFAULT ,SHOTGUN,AR,MACHINEGUN,ROCKETLAUNCHER,FLAMETHROWER};
+    
+    Weapon actualWeapon = Weapon.DEFAULT;
     public float fireRate = 1;
     public bool handicap=false;
     private float nextFire;
@@ -26,4 +29,11 @@ public class RangedAttack : MonoBehaviour {
             GameObject projectile = Instantiate(projectilePrefab, projectileSpawn.position, projectileSpawn.rotation);
         }
 	}
+    void BoostDamage(int value){
+        projectilePrefab.GetComponent<Projectile>().damage+=value;
+    }
+
+    void Unboost(int value){
+        projectilePrefab.GetComponent<Projectile>().damage-=value;
+    }
 }
