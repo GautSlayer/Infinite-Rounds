@@ -18,13 +18,17 @@ public class PlayerControler : MonoBehaviour {
 
     private Rigidbody2D myRb;
     private Vector2 movement;
+    private float lastPressedAxisVert;
+    private float lastPressedAxisHori;
 
     // Use this for initialization
     void Start () {
         myRb = GetComponent<Rigidbody2D>();
         OrienteProjectileSpawn(270);
         EndPerturbation();
-	}
+        lastPressedAxisVert = 0;
+        lastPressedAxisHori = 0;
+    }
 	
     private void FixedUpdate()
     {
@@ -38,8 +42,47 @@ public class PlayerControler : MonoBehaviour {
             return;
         }
 
-               //Get raw input ie 1,0,-1 with keyboard
-        float vertical = Input.GetAxisRaw("Vertical");
+        float vertical = 0;
+        float horizontal = 0;
+
+        //Move only in 4 directions
+        //Get the lastTime vertical axe was pressed
+        if (Input.GetButtonDown("Vertical"))
+        {
+            lastPressedAxisVert = Time.time;
+        }
+        //when release return to 0 so the other axis is back to first priority
+        if (Input.GetButtonUp("Vertical"))
+        {
+            lastPressedAxisVert = 0;
+        }
+
+        //Get the lastTime horizontal axe was pressed
+        if (Input.GetButtonDown("Horizontal"))
+        {
+            lastPressedAxisHori = Time.time;
+        }
+        //when release return to 0 so the other axis is back to first priority
+        if (Input.GetButtonUp("Horizontal"))
+        {
+            lastPressedAxisHori = 0;
+        }
+
+        //Make the last input (vertical or horizontal prioritary)
+        if (lastPressedAxisVert > lastPressedAxisHori)
+        {
+            horizontal = 0;
+            //Get raw input ie 1,0,-1 with keyboard
+            vertical = Input.GetAxisRaw("Vertical");
+        }
+        else
+        {
+            //Get raw input ie 1,0,-1 with keyboard
+            horizontal = Input.GetAxisRaw("Horizontal");
+            vertical = 0;
+        }
+        
+        //float vertical = Input.GetAxisRaw("Vertical");
         if(interdictions==4){
             if(vertical==-1){
                 vertical=0;
@@ -51,7 +94,7 @@ public class PlayerControler : MonoBehaviour {
                 vertical=0;
             }
         }
-        float horizontal = Input.GetAxisRaw("Horizontal");
+        //float horizontal = Input.GetAxisRaw("Horizontal");
         if(interdictions==2){
             if(horizontal==-1){
                 horizontal=0;
@@ -63,6 +106,7 @@ public class PlayerControler : MonoBehaviour {
                 horizontal=0;
             }
         }
+
         //Move the player with rigidbody.MovePosition()
        if(interdictions==6){
             movement = (new Vector2(vertical, horizontal).normalized) * (movementSpeed /1000);
@@ -96,6 +140,7 @@ public class PlayerControler : MonoBehaviour {
         {
             OrienteProjectileSpawn(270);
         }
+        /*
         if (aimVertical > 0 && aimHorizontal > 0) //right + up
         {
             OrienteProjectileSpawn(45);
@@ -112,6 +157,7 @@ public class PlayerControler : MonoBehaviour {
         {
             OrienteProjectileSpawn(225);
         }
+        */
     }
 
     //methode to orient (position + rotation) the projectile spawn with an angle in deg
