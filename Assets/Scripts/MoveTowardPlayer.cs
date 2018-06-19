@@ -11,7 +11,6 @@ public class MoveTowardPlayer : MonoBehaviour {
     private GameObject player;
 
     //Vectors for 8 directions
-    Vector2 top = Vector2.
 
     // Use this for initialization
     void Start () {
