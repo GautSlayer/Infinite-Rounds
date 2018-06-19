@@ -51,7 +51,7 @@ public class GameManager : MonoBehaviour {
         if(Time.time>=lastPerturbation+perturbationFrequency+Random.Range(-5.0f,5.0f)){
             Debug.Log("   ");
             lastPerturbation=Time.time;
-            GameObject.FindWithTag("Player").GetComponent<PlayerControler>().StartPerturbation(Random.Range(1,3));
+            GameObject.FindWithTag("Player").GetComponent<PlayerControler>().StartPerturbation(Random.Range(1,6));
             
         }
         //Temporary infinite spawning of enemies

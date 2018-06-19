@@ -38,17 +38,36 @@ public class PlayerControler : MonoBehaviour {
             return;
         }
 
-        //Get raw input ie 1,0,-1 with keyboard
+               //Get raw input ie 1,0,-1 with keyboard
         float vertical = Input.GetAxisRaw("Vertical");
+        if(interdictions==4){
+            if(vertical==-1){
+                vertical=0;
+            }
+        }
+        else if (interdictions==5){
+            
+            if(vertical==1){
+                vertical=0;
+            }
+        }
         float horizontal = Input.GetAxisRaw("Horizontal");
-
+        if(interdictions==2){
+            if(horizontal==-1){
+                horizontal=0;
+            }
+        }
+        else if (interdictions==3){
+            
+            if(horizontal==1){
+                horizontal=0;
+            }
+        }
         //Move the player with rigidbody.MovePosition()
-       if(interdictions==2){
-            movement = (new Vector2(0, vertical).normalized) * (movementSpeed /1000);
+       if(interdictions==6){
+            movement = (new Vector2(vertical, horizontal).normalized) * (movementSpeed /1000);
         }
-        else if(interdictions ==3){
-            movement = (new Vector2(horizontal, 0).normalized) * (movementSpeed /1000);
-        }
+       
         else
             movement = (new Vector2(horizontal, vertical).normalized) * (movementSpeed /1000);
 
@@ -170,9 +189,15 @@ public class PlayerControler : MonoBehaviour {
                 if(interdiction==1)
                     interdictionInfo.text= "Tir impossible";
                 else if(interdiction==2)
-                    interdictionInfo.text="Mvt horizontal impossible";
+                    interdictionInfo.text="Mvt gauche impossible";
                 else if(interdiction==3)
-                    interdictionInfo.text="Mvt vertical impossible";
+                    interdictionInfo.text="Mvt droit impossible";
+                else if(interdiction==4)
+                    interdictionInfo.text="Mvt bas impossible";
+                else if(interdiction==5)
+                    interdictionInfo.text="Mvt haut impossible";
+                else if(interdiction==6)
+                interdictionInfo.text="Mvt inversés";
                 
             }
             else
