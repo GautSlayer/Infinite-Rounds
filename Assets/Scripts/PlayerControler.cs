@@ -32,6 +32,9 @@ public class PlayerControler : MonoBehaviour {
 
     // Use this for initialization
     void Start () {
+        tempBoost =new Dictionary<Items.Type, float>();
+        memoryBoost =new List<Items.Type>();
+        magnitudeBoost= new Dictionary<Items.Type, float>();
         RangedAttack=gameObject.GetComponent<RangedAttack>();
         health=gameObject.GetComponent<Health>();
         myRb = GetComponent<Rigidbody2D>();
@@ -43,13 +46,15 @@ public class PlayerControler : MonoBehaviour {
 	
     private void FixedUpdate()
     {
-        foreach(var t in tempBoost){
-            if(t.Value>0){
-                tempBoost[t.Key]-=Time.deltaTime;   // Didn't find better way
-                
-            }
-            else{
-                RemoveBoost(t.Key);
+        if(tempBoost.Count!=0){
+            foreach(var t in tempBoost){
+                if(t.Value>0){
+                    tempBoost[t.Key]-=Time.deltaTime;   // Didn't find better way
+                    
+                }
+                else{
+                    RemoveBoost(t.Key);
+                }
             }
         }
 
