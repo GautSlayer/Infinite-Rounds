@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using Assets.Scripts;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
@@ -15,12 +16,12 @@ public class Round_End : MonoBehaviour {
     {
         if (lastRoundWin)
         {
-            lastRoundResult.text = "Round "+ GameManager.roundNumber + " Won !!";
+            lastRoundResult.text = "Round "+ MobWaves.roundNumber + " Won !!";
             nextRound.GetComponentInChildren<Text>().text = "Go Harder";
         }
         else
         {
-            lastRoundResult.text = "Round " + GameManager.roundNumber + " lost !!";
+            lastRoundResult.text = "Round " + MobWaves.roundNumber + " lost !!";
             nextRound.GetComponentInChildren<Text>().text = "Retry";
         }
     }

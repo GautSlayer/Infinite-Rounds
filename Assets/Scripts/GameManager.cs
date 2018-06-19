@@ -3,11 +3,12 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using UnityEngine.UI;
 
 public class GameManager : MonoBehaviour {
 
     public static GameManager instance;
-    public static int roundNumber = 1;
+    //public static int roundNumber = 1;
 
     public GameObject enemyPrefab;//Will be replaced with list of enemies in waves
     public int maxMobAtATIme = 100;
@@ -21,10 +22,14 @@ public class GameManager : MonoBehaviour {
     public float perturbationFrequency=20;
     public float lastPerturbation=0;
 
+    public Text killcount;
+    public Text roundNumberText;
+
     private float nextSpawn;
     private int enemySpawnedCount;
     private int enemyKilledCount;
     private bool playerAlive;
+    private int roundNumber;
 
     void Awake()
     {
@@ -42,7 +47,10 @@ public class GameManager : MonoBehaviour {
         lastPerturbation=Time.time+initialPerturbationOffset;
         maxMobAtATIme = MobWaves.maxMobAtATime;
         numbOfEnemyPerRound = MobWaves.numberOfEnemyInTheRound;
+        roundNumber = MobWaves.roundNumber;
         spawnRate = MobWaves.spawnRate;
+        roundNumberText.text = "Round " + roundNumber;
+        killcount.text = "0 / " + numbOfEnemyPerRound;
     }
 
     // Update is called once per frame
@@ -51,7 +59,7 @@ public class GameManager : MonoBehaviour {
         if(Time.time>=lastPerturbation+perturbationFrequency+Random.Range(-5.0f,5.0f)){
             Debug.Log("   ");
             lastPerturbation=Time.time;
-            GameObject.FindWithTag("Player").GetComponent<PlayerControler>().StartPerturbation(Random.Range(1,6));
+            player.GetComponent<PlayerControler>().StartPerturbation(Random.Range(1,6));
             
         }
         //Temporary infinite spawning of enemies
@@ -71,7 +79,6 @@ public class GameManager : MonoBehaviour {
             {
                 if(enemyKilledCount == numbOfEnemyPerRound) // Round won
                 {
-                    GameManager.roundNumber++;
                     EnemyStats.Buff();
                     MobWaves.Buff();
                     Round_End.lastRoundWin = true;
@@ -97,6 +104,7 @@ public class GameManager : MonoBehaviour {
     public void EnemyKilled()
     {
         enemyKilledCount++;
+        killcount.text = enemyKilledCount + " / " + numbOfEnemyPerRound;
     }
 
     public void PlayerDied()

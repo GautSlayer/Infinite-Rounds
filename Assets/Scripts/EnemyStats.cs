@@ -40,10 +40,10 @@ namespace Assets.Scripts
             */
 
             //New version with log on base 2 for the increase of stats
-            movementSpeed = Mathf.Log(GameManager.roundNumber, 2) * logSpeedMult + startMovementSpeed;
-            attackSpeed = startAttackSpeed - Mathf.Log(GameManager.roundNumber, 2) * logAtkSpeedMult;
-            damage = (int)(Mathf.Log(GameManager.roundNumber, 2) * logDmgMult + startDamage);
-            maxHealth = (int)(Mathf.Log(GameManager.roundNumber, 2)* logHealthMult + startMaxHealth);
+            movementSpeed = Mathf.Log(MobWaves.roundNumber, 2) * logSpeedMult + startMovementSpeed;
+            attackSpeed = startAttackSpeed - Mathf.Log(MobWaves.roundNumber, 2) * logAtkSpeedMult;
+            damage = (int)(Mathf.Log(MobWaves.roundNumber, 2) * logDmgMult + startDamage);
+            maxHealth = (int)(Mathf.Log(MobWaves.roundNumber, 2)* logHealthMult + startMaxHealth);
 
             //Clamp the values
             movementSpeed = Mathf.Clamp(movementSpeed, startMovementSpeed, maxMovementSpeed);

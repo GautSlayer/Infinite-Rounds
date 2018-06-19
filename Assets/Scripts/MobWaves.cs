@@ -15,6 +15,7 @@ namespace Assets.Scripts
         public static int maxMobAtATime = startMaxMobAtATime;
         public static int numberOfEnemyInTheRound = startNumberOfEnemyInTheRound;
         public static float spawnRate = startSpawnRate;
+        public static int roundNumber = 1;
 
         private static float logMaxMobAtATimeMult = 5f;
         private static float logNumberOfMubMult = 7;
@@ -27,10 +28,11 @@ namespace Assets.Scripts
         //Buff waves stats
         public static void Buff()
         {
+            roundNumber++;
             //Version with basic log on base 2 for the increase of stats
-            maxMobAtATime = (int)(Mathf.Log(GameManager.roundNumber, 2) * logMaxMobAtATimeMult + startMaxMobAtATime);
-            numberOfEnemyInTheRound = (int)(Mathf.Log(GameManager.roundNumber, 2) * logNumberOfMubMult + startNumberOfEnemyInTheRound);
-            spawnRate = startSpawnRate - Mathf.Log(GameManager.roundNumber, 2) * logSpawnRateMult;
+            maxMobAtATime = (int)(Mathf.Log(roundNumber, 2) * logMaxMobAtATimeMult + startMaxMobAtATime);
+            numberOfEnemyInTheRound = (int)(Mathf.Log(roundNumber, 2) * logNumberOfMubMult + startNumberOfEnemyInTheRound);
+            spawnRate = startSpawnRate - Mathf.Log(roundNumber, 2) * logSpawnRateMult;
 
             //Clamp the values
             maxMobAtATime = Mathf.Clamp(maxMobAtATime, startMaxMobAtATime, maxMaxMobAtATime);

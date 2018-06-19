@@ -53,6 +53,13 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   enemyPrefab: {fileID: 1342130292828646, guid: 9d5a12bb48f1ddc4f830f91cfe2105e5,
     type: 2}
-  player: {fileID: 0}
+  maxMobAtATIme: 100
+  numbOfEnemyPerRound: 10
   spawnRate: 1
-  randomRadiusSpawn: 10
+  player: {fileID: 0}
+  randomRadiusSpawn: 7
+  initialPerturbationOffset: 5
+  perturbationFrequency: 20
+  lastPerturbation: 0
+  killcount: {fileID: 0}
+  roundNumberText: {fileID: 0}
