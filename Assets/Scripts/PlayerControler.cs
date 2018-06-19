@@ -209,5 +209,9 @@ public class PlayerControler : MonoBehaviour {
         interdictions=0;
     }
 
+    private void OnDestroy()
+    {
+        GameManager.instance.PlayerDied();
+    }
 
 }

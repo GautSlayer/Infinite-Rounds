@@ -9,6 +9,10 @@ public class MoveTowardPlayer : MonoBehaviour {
 
     private Rigidbody2D myRb;
     private GameObject player;
+
+    //Vectors for 8 directions
+    Vector2 top = Vector2.
+
     // Use this for initialization
     void Start () {
         myRb = GetComponent<Rigidbody2D>();

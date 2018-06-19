@@ -7,13 +7,15 @@ using UnityEngine.SceneManagement;
 public class GameManager : MonoBehaviour {
 
     public static GameManager instance;
-    public static int roundNumber = 0;
+    public static int roundNumber = 1;
 
     public GameObject enemyPrefab;//Will be replaced with list of enemies in waves
+    public int maxMobAtATIme = 100;
     public int numbOfEnemyPerRound = 10;
-    public GameObject player;
     public float spawnRate = 1;
+    public GameObject player;
     public float randomRadiusSpawn;
+
     //Gestion perturbation
     public float initialPerturbationOffset=5;
     public float perturbationFrequency=20;
@@ -38,6 +40,9 @@ public class GameManager : MonoBehaviour {
     {
         NewRound();
         lastPerturbation=Time.time+initialPerturbationOffset;
+        maxMobAtATIme = MobWaves.maxMobAtATime;
+        numbOfEnemyPerRound = MobWaves.numberOfEnemyInTheRound;
+        spawnRate = MobWaves.spawnRate;
     }
 
     // Update is called once per frame
@@ -54,7 +59,7 @@ public class GameManager : MonoBehaviour {
         {
             if(enemySpawnedCount < numbOfEnemyPerRound)
             {
-                if(Time.time >= nextSpawn)
+                if(Time.time >= nextSpawn && enemySpawnedCount - enemyKilledCount < maxMobAtATIme)
                 {
                     nextSpawn = Time.time + spawnRate;
                     enemySpawnedCount++;
@@ -66,7 +71,9 @@ public class GameManager : MonoBehaviour {
             {
                 if(enemyKilledCount == numbOfEnemyPerRound) // Round won
                 {
+                    GameManager.roundNumber++;
                     EnemyStats.Buff();
+                    MobWaves.Buff();
                     Round_End.lastRoundWin = true;
                     SceneManager.LoadScene("Round_End");
                 }
@@ -85,7 +92,6 @@ public class GameManager : MonoBehaviour {
         enemySpawnedCount = 0;
         enemyKilledCount = 0;
         playerAlive = true;
-        roundNumber++;
     }
 
     public void EnemyKilled()
