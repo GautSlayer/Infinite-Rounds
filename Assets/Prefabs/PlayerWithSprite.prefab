@@ -249,7 +249,7 @@ Transform:
   m_GameObject: {fileID: 1876514667087788}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 4, y: 4, z: 1}
   m_Children: []
   m_Father: {fileID: 4934528033604184}
   m_RootOrder: 0
@@ -322,7 +322,7 @@ Camera:
   m_Enabled: 1
   serializedVersion: 2
   m_ClearFlags: 1
-  m_BackGroundColor: {r: 0.19215687, g: 0.3019608, b: 0.4745098, a: 0}
+  m_BackGroundColor: {r: 0.12179603, g: 0.13679989, b: 0.16037738, a: 0}
   m_NormalizedViewPortRect:
     serializedVersion: 2
     x: 0
@@ -381,7 +381,7 @@ BoxCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0, y: -0.5}
+  m_Offset: {x: 0, y: -0.2}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0, y: 0}
@@ -392,7 +392,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 1, y: 1}
+  m_Size: {x: 0.7, y: 0.9}
   m_EdgeRadius: 0
 --- !u!81 &81242068593412812
 AudioListener:
@@ -457,11 +457,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   movementSpeed: 75
   projectileSpawn: {fileID: 4450316725591830}
-  projectileSpawnOffsetX: 0.15
-  projectileSpawnOffsetY: 0.15
+  projectileSpawnOffsetX: 1
+  projectileSpawnOffsetY: 1
   interdictionInfo: {fileID: 114243327445996344}
   interdictions: 0
   recov_time: 5
+  memoryBoost: 
 --- !u!114 &114174638801230498
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -698,8 +699,8 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 5
-  m_Sprite: {fileID: 21300000, guid: 1c988e15671104b929e90a98f817a3dc, type: 3}
+  m_SortingOrder: 6
+  m_Sprite: {fileID: 21300170, guid: b2a73f0c682b792448cdb9ebd19ba6ba, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -745,7 +746,7 @@ Canvas:
   m_SortingBucketNormalizedSize: 0
   m_AdditionalShaderChannelsFlag: 0
   m_SortingLayerID: 0
-  m_SortingOrder: 0
+  m_SortingOrder: 10
   m_TargetDisplay: 0
 --- !u!223 &223243817255659390
 Canvas:

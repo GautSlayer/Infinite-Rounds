@@ -1,0 +1,475 @@
+fileFormatVersion: 2
+guid: ba73f2d37dd062446b3d792ccec0a435
+timeCreated: 1485024883
+licenseType: Store
+TextureImporter:
+  fileIDToRecycleName:
+    21300000: turret and small gen_0
+    21300002: turret and small gen_1
+    21300004: turret and small gen_2
+    21300006: turret and small gen_3
+    21300008: turret and small gen_4
+    21300010: turret and small gen_5
+    21300012: turret and small gen_6
+    21300014: '!'
+    21300016: turret and small gen_8
+    21300018: turret and small gen_9
+    21300020: turret and small gen_10
+    21300022: turret and small gen_11
+    21300024: turret and small gen_12
+    21300026: turret and small gen_13
+    21300028: turret and small gen_14
+    21300030: turret and small gen_15
+    21300032: Turret idle 1
+    21300034: Turret idle 2
+    21300036: Turret idle 3
+    21300038: Turret idle 4
+    21300040: Turret idle 5
+    21300042: Turret idle 6
+    21300044: Turret idle 7
+    21300046: Turret idle 8
+    21300048: turret and small gen_24
+    21300050: turret and small gen_25
+    21300052: turret and small gen_26
+    21300054: turret and small gen_27
+    21300056: turret and small gen_28
+    21300058: turret and small gen_29
+    21300060: turret and small gen_30
+    21300062: turret and small gen_31
+    21300064: turret and small gen_32
+    21300066: turret and small gen_33
+    21300068: Turret Attack 1
+    21300070: Turret Attack 2
+    21300072: Turret Attack 3
+    21300074: Turret Attack 4
+    21300076: Turret Attack 5
+    21300078: Turret Attack 6
+    21300080: Turret Attack 7
+    21300082: Turret Attack 8
+    21300084: Small generator 1
+    21300086: Small generator 2
+    21300088: Small generator 3
+    21300090: Small generator 4
+    21300092: Small generator 5
+    21300094: Small generator 6
+    21300096: Small generator 7
+    21300098: Small generator 8
+    21300100: Turret Idle 1
+    21300102: Turret Idle 2
+    21300104: Turret Idle 3
+    21300106: Turret Idle 4
+    21300108: Turret Idle 5
+    21300110: Turret Idle 6
+    21300112: Turret Idle 7
+    21300114: Turret Idle 8
+    21300116: Turret Attack 1
+    21300118: Turret Attack 2
+    21300120: Turret Attack 3
+    21300122: Turret Attack 4
+    21300124: Turret Attack 5
+    21300126: Turret Attack 6
+    21300128: Turret Attack 7
+    21300130: Turret Attack 8
+    21300132: Small generator 1
+    21300134: Small generator 2
+    21300136: Small generator 3
+    21300138: Small generator 4
+    21300140: Small generator 5
+    21300142: Small generator 6
+    21300144: Small generator 7
+    21300146: Small generator 8
+  serializedVersion: 4
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+  isReadable: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 1
+  maxTextureSize: 2048
+  textureSettings:
+    filterMode: 0
+    aniso: -1
+    mipBias: -1
+    wrapMode: 1
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spritePixelsToUnits: 100
+  alphaUsage: 1
+  alphaIsTransparency: 1
+  spriteTessellationDetail: -1
+  textureType: 8
+  textureShape: 1
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  platformSettings:
+  - buildTarget: DefaultTexturePlatform
+    maxTextureSize: 2048
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+  - buildTarget: Standalone
+    maxTextureSize: 2048
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: '!'
+      rect:
+        serializedVersion: 2
+        x: 346
+        y: 169
+        width: 5
+        height: 14
+      alignment: 6
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: Turret Idle 1
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 124
+        width: 41
+        height: 40
+      alignment: 6
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: Turret Idle 2
+      rect:
+        serializedVersion: 2
+        x: 46
+        y: 124
+        width: 41
+        height: 40
+      alignment: 6
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: Turret Idle 3
+      rect:
+        serializedVersion: 2
+        x: 92
+        y: 124
+        width: 41
+        height: 40
+      alignment: 6
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: Turret Idle 4
+      rect:
+        serializedVersion: 2
+        x: 138
+        y: 124
+        width: 41
+        height: 40
+      alignment: 6
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: Turret Idle 5
+      rect:
+        serializedVersion: 2
+        x: 184
+        y: 124
+        width: 41
+        height: 40
+      alignment: 6
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: Turret Idle 6
+      rect:
+        serializedVersion: 2
+        x: 230
+        y: 124
+        width: 41
+        height: 40
+      alignment: 6
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: Turret Idle 7
+      rect:
+        serializedVersion: 2
+        x: 276
+        y: 124
+        width: 41
+        height: 40
+      alignment: 6
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: Turret Idle 8
+      rect:
+        serializedVersion: 2
+        x: 322
+        y: 124
+        width: 41
+        height: 40
+      alignment: 6
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: Turret Attack 1
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 49
+        width: 42
+        height: 59
+      alignment: 6
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: Turret Attack 2
+      rect:
+        serializedVersion: 2
+        x: 46
+        y: 49
+        width: 43
+        height: 59
+      alignment: 6
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: Turret Attack 3
+      rect:
+        serializedVersion: 2
+        x: 92
+        y: 49
+        width: 43
+        height: 59
+      alignment: 6
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: Turret Attack 4
+      rect:
+        serializedVersion: 2
+        x: 138
+        y: 49
+        width: 44
+        height: 40
+      alignment: 6
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: Turret Attack 5
+      rect:
+        serializedVersion: 2
+        x: 184
+        y: 49
+        width: 43
+        height: 40
+      alignment: 6
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: Turret Attack 6
+      rect:
+        serializedVersion: 2
+        x: 230
+        y: 49
+        width: 43
+        height: 40
+      alignment: 6
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: Turret Attack 7
+      rect:
+        serializedVersion: 2
+        x: 276
+        y: 49
+        width: 44
+        height: 59
+      alignment: 6
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: Turret Attack 8
+      rect:
+        serializedVersion: 2
+        x: 322
+        y: 49
+        width: 46
+        height: 59
+      alignment: 6
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: Small generator 1
+      rect:
+        serializedVersion: 2
+        x: 7
+        y: 0
+        width: 25
+        height: 29
+      alignment: 6
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: Small generator 2
+      rect:
+        serializedVersion: 2
+        x: 53
+        y: 0
+        width: 25
+        height: 28
+      alignment: 6
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: Small generator 3
+      rect:
+        serializedVersion: 2
+        x: 99
+        y: 0
+        width: 25
+        height: 28
+      alignment: 6
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: Small generator 4
+      rect:
+        serializedVersion: 2
+        x: 145
+        y: 0
+        width: 25
+        height: 29
+      alignment: 6
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: Small generator 5
+      rect:
+        serializedVersion: 2
+        x: 191
+        y: 0
+        width: 25
+        height: 29
+      alignment: 6
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: Small generator 6
+      rect:
+        serializedVersion: 2
+        x: 237
+        y: 0
+        width: 25
+        height: 27
+      alignment: 6
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: Small generator 7
+      rect:
+        serializedVersion: 2
+        x: 283
+        y: 0
+        width: 25
+        height: 27
+      alignment: 6
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: Small generator 8
+      rect:
+        serializedVersion: 2
+        x: 329
+        y: 0
+        width: 25
+        height: 28
+      alignment: 6
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    outline: []
+  spritePackingTag: 
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

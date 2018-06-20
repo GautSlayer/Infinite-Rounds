@@ -30,7 +30,7 @@ public class Projectile : MonoBehaviour {
         GameObject collisionGO = collision.transform.root.gameObject;
 
         //Ignore collision with the boundary and contactZone (we want the usual collider for the enemy, not their contactZone)
-        if(collisionGO.CompareTag("Boundary") || collision.CompareTag("ContactDamageZone"))
+        if(collisionGO.CompareTag("Boundary") || collision.CompareTag("ContactDamageZone") || collisionGO.CompareTag("Hole"))
         {
             return;
         }
