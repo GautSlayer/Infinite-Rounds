@@ -29,4 +29,9 @@ public class Round_End : MonoBehaviour {
     {
         SceneManager.LoadScene("Gauthier Test");
     }
+
+    public void Quit()
+    {
+        SceneManager.LoadScene("Start_Menu");
+    }
 }
