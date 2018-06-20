@@ -26,10 +26,13 @@ public class PlayerControler : MonoBehaviour {
     Health health;
     // gestion RigidB
     private Rigidbody2D myRb;
-    private Animator animator;
     private Vector2 movement;
     private float lastPressedAxisVert;
     private float lastPressedAxisHori;
+
+    // Animation
+    private Animator animator;
+    private bool dying = false;
     
     void Awake()
     {
@@ -52,6 +55,11 @@ public class PlayerControler : MonoBehaviour {
 	
     private void FixedUpdate()
     {
+        if(dying)
+        {
+            return;
+        }
+
         if(tempBoost.Count!=0){
             List<Items.Type> keys = new List<Items.Type> (tempBoost.Keys);
             
@@ -208,10 +216,10 @@ public class PlayerControler : MonoBehaviour {
         }
 
         // Handle animations
-        HandleAnimations(horizontal, vertical, shoot);
+        HandleMoveAnimations(horizontal, vertical, shoot);
     }
 
-    private void HandleAnimations(float horizontal, float vertical, bool shoot)
+    private void HandleMoveAnimations(float horizontal, float vertical, bool shoot)
     {
         animator.SetBool("Shoot", shoot);
 
@@ -225,6 +233,11 @@ public class PlayerControler : MonoBehaviour {
         {
             animator.SetBool("Run", false);
         }
+    }
+
+    public void PlayerDying()
+    {
+        this.dying = true;
     }
 
     //methode to orient (position + rotation) the projectile spawn with an angle in deg
@@ -438,7 +451,7 @@ public class PlayerControler : MonoBehaviour {
         
     }
 
-void OnTriggerEnter2D(Collider2D other) {
+    void OnTriggerEnter2D(Collider2D other) {
         if (other.tag=="Item"){
             Items it =other.GetComponent<Items>();
             Items.Type t = it.Type1;

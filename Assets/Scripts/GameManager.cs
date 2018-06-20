@@ -29,6 +29,7 @@ public class GameManager : MonoBehaviour {
     private int enemySpawnedCount;
     private int enemyKilledCount;
     private bool playerAlive;
+    private bool dying = false;
     private int roundNumber;
 
     void Awake()
@@ -62,6 +63,7 @@ public class GameManager : MonoBehaviour {
             player.GetComponent<PlayerControler>().StartPerturbation(Random.Range(1,6));
             
         }
+
         //Temporary infinite spawning of enemies
         if(playerAlive)
         {
@@ -87,12 +89,37 @@ public class GameManager : MonoBehaviour {
                 }
             }
         }
-        else //Round lost
+        else if(!dying) //Round lost
         {
-            Round_End.lastRoundWin = false;
-            SceneManager.LoadScene("Round_End");
+            // Death animation
+            StartCoroutine("DieBeforeNewRound");
+            dying = true;
         }
 	}
+
+    private IEnumerator DieBeforeNewRound()
+    {
+        // Trigger the death animation
+        Animator playerAnimator = player.GetComponentInChildren<Animator>();
+        if (playerAnimator)
+        {
+            playerAnimator.SetTrigger("Die");
+        }
+        else
+        {
+            Debug.LogError("Player retrieved from GameManager has no Animator !");
+        }
+
+        // Disable player movements during death animation
+        player.GetComponent<PlayerControler>().PlayerDying();
+
+        // Wait for the death animation to run
+        yield return new WaitForSeconds(3f);
+
+        // Reload the scene
+        Round_End.lastRoundWin = false;
+        SceneManager.LoadScene("Round_End");
+    }
 
     private void NewRound()
     {
