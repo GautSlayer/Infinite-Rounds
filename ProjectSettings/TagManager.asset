@@ -9,6 +9,7 @@ TagManager:
   - ContactDamageZone
   - Item
   - Hole
+  - Projectile
   layers:
   - Default
   - TransparentFX

@@ -424,6 +424,31 @@ Prefab:
       propertyPath: m_FontData.m_Alignment
       value: 7
       objectReference: {fileID: 0}
+    - target: {fileID: 114583430405262580, guid: 7e732ac469db9db4ebfc9f05a35359e7,
+        type: 2}
+      propertyPath: actualWeapon
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 114583430405262580, guid: 7e732ac469db9db4ebfc9f05a35359e7,
+        type: 2}
+      propertyPath: damageMG
+      value: 40
+      objectReference: {fileID: 0}
+    - target: {fileID: 114583430405262580, guid: 7e732ac469db9db4ebfc9f05a35359e7,
+        type: 2}
+      propertyPath: damageShotgun
+      value: 40
+      objectReference: {fileID: 0}
+    - target: {fileID: 114583430405262580, guid: 7e732ac469db9db4ebfc9f05a35359e7,
+        type: 2}
+      propertyPath: damageAR
+      value: 40
+      objectReference: {fileID: 0}
+    - target: {fileID: 114583430405262580, guid: 7e732ac469db9db4ebfc9f05a35359e7,
+        type: 2}
+      propertyPath: damageDefault
+      value: 40
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 7e732ac469db9db4ebfc9f05a35359e7, type: 2}
   m_IsPrefabParent: 0

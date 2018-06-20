@@ -8,7 +8,21 @@ public class RangedAttack : MonoBehaviour {
     public GameObject projectilePrefab;
     enum Weapon {DEFAULT ,SHOTGUN,AR,MACHINEGUN,ROCKETLAUNCHER,FLAMETHROWER};
     
-    Weapon actualWeapon = Weapon.DEFAULT;
+    //// Damage
+    [SerializeField]int damageMG= 20;
+    [SerializeField]int damageShotgun= 20;
+    [SerializeField]int damageAR= 20;
+    [SerializeField]int damageDefault= 20;
+    //// FireRate
+    [SerializeField]float fireRateMG= 0.1f;
+    [SerializeField]float fireRateShotgun= 1.0f;
+    [SerializeField]float fireRateAR= 0.2f;
+    [SerializeField]float fireRateDefault= 0.5f;
+    //// Boost
+    [SerializeField]int damageBoost= 0 ;
+    [SerializeField]float FireRateBoost = 0 ;
+
+    [SerializeField]Weapon actualWeapon = Weapon.DEFAULT;
     public float fireRate = 1;
     public bool handicap=false;
     private float nextFire;
@@ -22,19 +36,55 @@ public class RangedAttack : MonoBehaviour {
 	void Update () {
         if (!handicap&&(Input.GetButton("AimHorizontal") || Input.GetButton("AimVertical")) && Time.time >= nextFire)
         {
-            //Set available time for next shoot
-            nextFire = Time.time + fireRate;
+            Vector3 t = projectileSpawn.localEulerAngles;
+            Projectile ammo =projectilePrefab.GetComponent<Projectile>();
+            switch(actualWeapon){
+                
+                case Weapon.AR:
+                break;
+                case Weapon.SHOTGUN:
+                    ammo.damage=(damageShotgun)*(1+damageBoost);
+                    Instantiate(projectilePrefab, projectileSpawn.position, Quaternion.Euler(0,0,t.z));
+                    
+                    Instantiate(projectilePrefab, projectileSpawn.position, Quaternion.Euler(0,0,t.z+20));
+                    
+                    Instantiate(projectilePrefab, projectileSpawn.position, Quaternion.Euler(0,0,t.z-20));
+                    nextFire = Time.time + fireRateShotgun*(1-FireRateBoost);
+                break;
+                case Weapon.FLAMETHROWER:
+                break;
+                case Weapon.MACHINEGUN:
+                    ammo.damage=(damageMG)*(1+damageBoost);
+                    Instantiate(projectilePrefab, projectileSpawn.position, Quaternion.Euler(0,0,t.z+Random.Range(-25,25)));
+                    nextFire = Time.time + fireRateMG*(1-FireRateBoost);
+                    //nextFire = Time.time + fireRate;
+                break;
+                case Weapon.ROCKETLAUNCHER:
+                break;
+                case Weapon.DEFAULT:
+                    ammo.damage=(damageDefault)*(1+damageBoost);
+                    Instantiate(projectilePrefab, projectileSpawn.position, projectileSpawn.rotation);
+                    nextFire = Time.time + fireRateDefault*(1-FireRateBoost);
+                break;
+                default:
+                //nextFire = Time.time + fireRate;
+                break;
+            }
 
-            //Instanciate the projectile
-            GameObject projectile = Instantiate(projectilePrefab, projectileSpawn.position, projectileSpawn.rotation);
+            //Set available time for next shoot
+            
+
+            
         }
 	}
     public void BoostDamage(int value){
-        projectilePrefab.GetComponent<Projectile>().damage+=value;
+        //projectilePrefab.GetComponent<Projectile>().damage+=value;
+        damageBoost=value;
     }
 
     public void UnboostDamage(int value){
-        projectilePrefab.GetComponent<Projectile>().damage-=value;
+        //projectilePrefab.GetComponent<Projectile>().damage-=value;
+        damageBoost=0;
     }
 
     public void BoostFireRate(float value){
