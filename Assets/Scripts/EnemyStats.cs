@@ -6,30 +6,39 @@ using UnityEngine;
 
 namespace Assets.Scripts
 {
+    [Serializable]
     class EnemyStats
     {
-        private static float startMovementSpeed = 10f;
-        private static float startAttackSpeed = 1f;
-        private static int startDamage = 10;
-        private static int startMaxHealth = 40;
+        private float startMovementSpeed = 10f;
+        private float startAttackSpeed = 1f;
+        private int startDamage = 10;
+        private int startMaxHealth = 40;
 
-        public static float movementSpeed = startMovementSpeed;
-        public static float attackSpeed = startAttackSpeed;
-        public static int damage = startDamage;
-        public static int maxHealth = startMaxHealth;
+        public float movementSpeed;
+        public float attackSpeed;
+        public int damage;
+        public int maxHealth;
 
-        private static float maxMovementSpeed = 30f;
-        private static float maxAttackSpeed = 0.2f;
-        private static int maxDamage = 100;
-        private static int maxMaxHealth = 200;
+        private float maxMovementSpeed = 30f;
+        private float maxAttackSpeed = 0.2f;
+        private int maxDamage = 100;
+        private int maxMaxHealth = 200;
 
-        private static float logSpeedMult = 3f;
-        private static float logAtkSpeedMult = 0.1f;
-        private static float logDmgMult =10;
-        private static float logHealthMult =30;
+        private float logSpeedMult = 3f;
+        private float logAtkSpeedMult = 0.1f;
+        private float logDmgMult =10;
+        private float logHealthMult =30;
+
+        public EnemyStats()
+        {
+            movementSpeed = startMovementSpeed;
+            attackSpeed = startAttackSpeed;
+            damage = startDamage;
+            maxHealth = startMaxHealth;
+        }
 
         //Buff enemy stats
-        public static void Buff()
+        public void Buff()
         {
             //Old / Aplha version
             /*
@@ -40,10 +49,10 @@ namespace Assets.Scripts
             */
 
             //New version with log on base 2 for the increase of stats
-            movementSpeed = Mathf.Log(MobWaves.roundNumber, 2) * logSpeedMult + startMovementSpeed;
-            attackSpeed = startAttackSpeed - Mathf.Log(MobWaves.roundNumber, 2) * logAtkSpeedMult;
-            damage = (int)(Mathf.Log(MobWaves.roundNumber, 2) * logDmgMult + startDamage);
-            maxHealth = (int)(Mathf.Log(MobWaves.roundNumber, 2)* logHealthMult + startMaxHealth);
+            movementSpeed = Mathf.Log(Data.mobWaves.roundNumber, 2) * logSpeedMult + startMovementSpeed;
+            attackSpeed = startAttackSpeed - Mathf.Log(Data.mobWaves.roundNumber, 2) * logAtkSpeedMult;
+            damage = (int)(Mathf.Log(Data.mobWaves.roundNumber, 2) * logDmgMult + startDamage);
+            maxHealth = (int)(Mathf.Log(Data.mobWaves.roundNumber, 2)* logHealthMult + startMaxHealth);
 
             //Clamp the values
             movementSpeed = Mathf.Clamp(movementSpeed, startMovementSpeed, maxMovementSpeed);

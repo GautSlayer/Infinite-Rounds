@@ -17,9 +17,9 @@ public class EnemyScript : MonoBehaviour {
         healthScript = GetComponentInChildren<Health>();
 
         //Set the stats of the enemt with values from the EnemyStats class
-        moveTowardPlayerScript.movementSpeed = EnemyStats.movementSpeed;
-        contactDamageScript.attackSpeed = EnemyStats.attackSpeed;
-        contactDamageScript.damage = EnemyStats.damage;
-        healthScript.maxHealth = EnemyStats.maxHealth;
+        moveTowardPlayerScript.movementSpeed = Data.enemyStats.movementSpeed;
+        contactDamageScript.attackSpeed = Data.enemyStats.attackSpeed;
+        contactDamageScript.damage = Data.enemyStats.damage;
+        healthScript.maxHealth = Data.enemyStats.maxHealth;
 	}
 }

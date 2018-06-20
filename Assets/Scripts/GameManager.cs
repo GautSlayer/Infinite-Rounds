@@ -45,10 +45,10 @@ public class GameManager : MonoBehaviour {
     {
         NewRound();
         lastPerturbation=Time.time+initialPerturbationOffset;
-        maxMobAtATIme = MobWaves.maxMobAtATime;
-        numbOfEnemyPerRound = MobWaves.numberOfEnemyInTheRound;
-        roundNumber = MobWaves.roundNumber;
-        spawnRate = MobWaves.spawnRate;
+        maxMobAtATIme = Data.mobWaves.maxMobAtATime;
+        numbOfEnemyPerRound = Data.mobWaves.numberOfEnemyInTheRound;
+        roundNumber = Data.mobWaves.roundNumber;
+        spawnRate = Data.mobWaves.spawnRate;
         roundNumberText.text = "Round " + roundNumber;
         killcount.text = "0 / " + numbOfEnemyPerRound;
     }
@@ -79,8 +79,9 @@ public class GameManager : MonoBehaviour {
             {
                 if(enemyKilledCount == numbOfEnemyPerRound) // Round won
                 {
-                    EnemyStats.Buff();
-                    MobWaves.Buff();
+                    Data.mobWaves.Buff();
+                    Data.enemyStats.Buff();
+                    Data.SaveData();
                     Round_End.lastRoundWin = true;
                     SceneManager.LoadScene("Round_End");
                 }

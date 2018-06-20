@@ -16,12 +16,12 @@ public class Round_End : MonoBehaviour {
     {
         if (lastRoundWin)
         {
-            lastRoundResult.text = "Round "+ MobWaves.roundNumber + " Won !!";
+            lastRoundResult.text = "Round "+ Data.mobWaves.roundNumber + " Won !!";
             nextRound.GetComponentInChildren<Text>().text = "Go Harder";
         }
         else
         {
-            lastRoundResult.text = "Round " + MobWaves.roundNumber + " lost !!";
+            lastRoundResult.text = "Round " + Data.mobWaves.roundNumber + " lost !!";
             nextRound.GetComponentInChildren<Text>().text = "Retry";
         }
     }
