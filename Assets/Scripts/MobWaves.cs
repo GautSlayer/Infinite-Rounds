@@ -9,7 +9,7 @@ namespace Assets.Scripts
     [Serializable]
     class MobWaves
     {
-        private int startMaxMobAtATime = 20;
+        private int startMaxMobAtATime = 50;
         private int startNumberOfEnemyInTheRound = 10;
         private float startSpawnRate = 2f;
 
@@ -20,11 +20,11 @@ namespace Assets.Scripts
 
         private float logMaxMobAtATimeMult = 5f;
         private float logNumberOfMubMult = 7;
-        private float logSpawnRateMult = 0.3f;
+        private float logSpawnRateMult = 0.02f;
 
         private int maxMaxMobAtATime = 200;
         private int maxNumberOfEnemyInTheRound = 10000;
-        private float maxSpawnRate = 0.1f;
+        private float maxSpawnRate = 0.2f;
 
 
         public MobWaves()
@@ -40,9 +40,9 @@ namespace Assets.Scripts
         {
             roundNumber++;
             //Version with basic log on base 2 for the increase of stats
-            maxMobAtATime = (int)(Mathf.Log(roundNumber, 2) * logMaxMobAtATimeMult + startMaxMobAtATime);
-            numberOfEnemyInTheRound = (int)(Mathf.Log(roundNumber, 2) * logNumberOfMubMult + startNumberOfEnemyInTheRound);
-            spawnRate = startSpawnRate - Mathf.Log(roundNumber, 2) * logSpawnRateMult;
+            maxMobAtATime = (int)(Mathf.Log(roundNumber, 10) * logMaxMobAtATimeMult + maxMobAtATime);
+            numberOfEnemyInTheRound = (int)(Mathf.Log(roundNumber, 10) * logNumberOfMubMult + numberOfEnemyInTheRound);
+            spawnRate = spawnRate - Mathf.Log(roundNumber, 10) * logSpawnRateMult;
 
             //Clamp the values
             maxMobAtATime = Mathf.Clamp(maxMobAtATime, startMaxMobAtATime, maxMaxMobAtATime);

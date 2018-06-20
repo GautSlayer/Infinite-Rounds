@@ -12,7 +12,7 @@ namespace Assets.Scripts
         private float startMovementSpeed = 10f;
         private float startAttackSpeed = 1f;
         private int startDamage = 10;
-        private int startMaxHealth = 40;
+        private int startMaxHealth = 25;
 
         public float movementSpeed;
         public float attackSpeed;
@@ -22,12 +22,12 @@ namespace Assets.Scripts
         private float maxMovementSpeed = 30f;
         private float maxAttackSpeed = 0.2f;
         private int maxDamage = 100;
-        private int maxMaxHealth = 200;
+        private int maxMaxHealth = 400;
 
-        private float logSpeedMult = 3f;
-        private float logAtkSpeedMult = 0.1f;
-        private float logDmgMult =10;
-        private float logHealthMult =30;
+        private float logSpeedMult = 0.5f;
+        private float logAtkSpeedMult = 0.03f;
+        private float logDmgMult =2;
+        private float logHealthMult =10;
 
         public EnemyStats()
         {
@@ -49,10 +49,10 @@ namespace Assets.Scripts
             */
 
             //New version with log on base 2 for the increase of stats
-            movementSpeed = Mathf.Log(Data.mobWaves.roundNumber, 2) * logSpeedMult + startMovementSpeed;
-            attackSpeed = startAttackSpeed - Mathf.Log(Data.mobWaves.roundNumber, 2) * logAtkSpeedMult;
-            damage = (int)(Mathf.Log(Data.mobWaves.roundNumber, 2) * logDmgMult + startDamage);
-            maxHealth = (int)(Mathf.Log(Data.mobWaves.roundNumber, 2)* logHealthMult + startMaxHealth);
+            movementSpeed = Mathf.Log(Data.mobWaves.roundNumber, 10) * logSpeedMult + movementSpeed;
+            attackSpeed = attackSpeed - Mathf.Log(Data.mobWaves.roundNumber, 10) * logAtkSpeedMult;
+            damage = (int)(Mathf.Log(Data.mobWaves.roundNumber, 10) * logDmgMult + damage);
+            maxHealth = (int)(Mathf.Log(Data.mobWaves.roundNumber, 10)* logHealthMult + maxHealth);
 
             //Clamp the values
             movementSpeed = Mathf.Clamp(movementSpeed, startMovementSpeed, maxMovementSpeed);
