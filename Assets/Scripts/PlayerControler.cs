@@ -26,9 +26,15 @@ public class PlayerControler : MonoBehaviour {
     Health health;
     // gestion RigidB
     private Rigidbody2D myRb;
+    private Animator animator;
     private Vector2 movement;
     private float lastPressedAxisVert;
     private float lastPressedAxisHori;
+    
+    void Awake()
+    {
+        animator = GetComponentInChildren<Animator>();
+    }
 
     // Use this for initialization
     void Start () {
@@ -152,43 +158,73 @@ public class PlayerControler : MonoBehaviour {
         //Get raw input ie 1,0,-1 with keyboard
         float aimVertical = Input.GetAxisRaw("AimVertical");
         float aimHorizontal = Input.GetAxisRaw("AimHorizontal");
+        bool shoot = true;
 
         //Oriente the projectile spawn according directionnal arrow
         //Should might be done in update and ot fixedUpdate
-        if (aimVertical == 0 && aimHorizontal > 0) //right
+        if (aimVertical == 0 && aimHorizontal == 0)
         {
-            OrienteProjectileSpawn(0);
+            shoot = false;
         }
-        if (aimVertical == 0 && aimHorizontal < 0) //left
+        else
         {
-            OrienteProjectileSpawn(180);
+            horizontal = aimHorizontal;
+            vertical = aimVertical;
+
+            if (aimVertical == 0 && aimHorizontal > 0) //right
+            {
+                OrienteProjectileSpawn(0);
+            }
+            if (aimVertical == 0 && aimHorizontal < 0) //left
+            {
+                OrienteProjectileSpawn(180);
+            }
+            if (aimVertical > 0 && aimHorizontal == 0) //up
+            {
+                OrienteProjectileSpawn(90);
+            }
+            if (aimVertical < 0 && aimHorizontal == 0) //down
+            {
+                OrienteProjectileSpawn(270);
+            }
+            /*
+            if (aimVertical > 0 && aimHorizontal > 0) //right + up
+            {
+                OrienteProjectileSpawn(45);
+            }
+            if (aimVertical > 0 && aimHorizontal < 0) //left + up
+            {
+                OrienteProjectileSpawn(135);
+            }
+            if (aimVertical < 0 && aimHorizontal > 0) //right + down
+            {
+                OrienteProjectileSpawn(315);
+            }
+            if (aimVertical < 0 && aimHorizontal < 0) //left + down
+            {
+                OrienteProjectileSpawn(225);
+            }
+            */
         }
-        if (aimVertical > 0 && aimHorizontal == 0) //up
+
+        // Handle animations
+        HandleAnimations(horizontal, vertical, shoot);
+    }
+
+    private void HandleAnimations(float horizontal, float vertical, bool shoot)
+    {
+        animator.SetBool("Shoot", shoot);
+
+        if (horizontal != 0 || vertical != 0)
         {
-            OrienteProjectileSpawn(90);
+            animator.SetBool("Run", true);
+            animator.SetFloat("FaceX", horizontal);
+            animator.SetFloat("FaceY", vertical);
         }
-        if (aimVertical < 0 && aimHorizontal == 0) //down
+        else
         {
-            OrienteProjectileSpawn(270);
+            animator.SetBool("Run", false);
         }
-        /*
-        if (aimVertical > 0 && aimHorizontal > 0) //right + up
-        {
-            OrienteProjectileSpawn(45);
-        }
-        if (aimVertical > 0 && aimHorizontal < 0) //left + up
-        {
-            OrienteProjectileSpawn(135);
-        }
-        if (aimVertical < 0 && aimHorizontal > 0) //right + down
-        {
-            OrienteProjectileSpawn(315);
-        }
-        if (aimVertical < 0 && aimHorizontal < 0) //left + down
-        {
-            OrienteProjectileSpawn(225);
-        }
-        */
     }
 
     //methode to orient (position + rotation) the projectile spawn with an angle in deg
