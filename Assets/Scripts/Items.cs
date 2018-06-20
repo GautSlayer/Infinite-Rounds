@@ -15,7 +15,6 @@ public class Items : MonoBehaviour {
 	[SerializeField]Type type;
 	    public Type Type1 { get{return type;}
     }
-
     public float Magnitude
     {get{return magnitude;}set{magnitude = value;}}
 	public float Lifespan
@@ -66,6 +65,9 @@ public class Items : MonoBehaviour {
 		if(lifespan>0){
 			lifespan-=Time.deltaTime;
 		}
-
+        else{
+            GameObject.Destroy(this.gameObject);
+        }
+        
 	}
 }

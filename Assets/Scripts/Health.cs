@@ -19,29 +19,31 @@ public class Health : MonoBehaviour {
 
     public void TakeDamage(int damage)
     {
-        currentHealth -= damage;
-        healthBar.value = currentHealth;
+        if(!isInvicible){
+            currentHealth -= damage;
+            healthBar.value = currentHealth;
 
-        //if Health point = 0, destroy the root gameobject (temporary solution)
-        //need a proper death animation
-        if(currentHealth <= 0)
-        {
-            GameManager gameManager = GameManager.instance;
-            if(gameManager != null)
+            //if Health point = 0, destroy the root gameobject (temporary solution)
+            //need a proper death animation
+            if(currentHealth <= 0)
             {
-                if (this.transform.root.gameObject.CompareTag("Player")) //Player died
+                GameManager gameManager = GameManager.instance;
+                if(gameManager != null)
                 {
-                    gameManager.PlayerDied();
+                    if (this.transform.root.gameObject.CompareTag("Player")) //Player died
+                    {
+                        gameManager.PlayerDied();
+                    }
+                    else if (this.transform.root.gameObject.CompareTag("Enemy")) //Enemy died
+                    {
+                        gameManager.EnemyKilled();
+                        Destroy(this.transform.root.gameObject);
+                    }
                 }
-                else if (this.transform.root.gameObject.CompareTag("Enemy")) //Enemy died
+                else
                 {
-                    gameManager.EnemyKilled();
-                    Destroy(this.transform.root.gameObject);
+                    Debug.Log("Error, no GameManager found");
                 }
-            }
-            else
-            {
-                Debug.Log("Error, no GameManager found");
             }
         }
     }
