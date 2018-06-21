@@ -6,29 +6,34 @@ public class RangedAttack : MonoBehaviour {
 
     public Transform projectileSpawn;
     public GameObject projectilePrefab;
-    enum Weapon {DEFAULT ,SHOTGUN,AR,MACHINEGUN,ROCKETLAUNCHER,FLAMETHROWER};
+    public enum Weapon {DEFAULT ,SHOTGUN,MACHINEGUN,AR,ROCKETLAUNCHER,FLAMETHROWER};
     
     //// Damage
+    [Header("Damage")]
     [SerializeField]int damageMG= 20;
     [SerializeField]int damageShotgun= 20;
     [SerializeField]int damageAR= 20;
     [SerializeField]int damageDefault= 20;
     //// FireRate
+    [Header("FireRate")]
     [SerializeField]float fireRateMG= 0.1f;
     [SerializeField]float fireRateShotgun= 1.0f;
     [SerializeField]float fireRateAR= 0.2f;
     [SerializeField]float fireRateDefault= 0.5f;
     //// Boost
-    [SerializeField]int damageBoost= 0 ;
-    [SerializeField]float FireRateBoost = 0 ;
-
+    int damageBoost= 0 ;
+    float FireRateBoost = 0 ;
+    
     [SerializeField]Weapon actualWeapon = Weapon.DEFAULT;
     public float fireRate = 1;
     public bool handicap=false;
     private float nextFire;
 
-	// Use this for initialization
-	void Start () {
+    public Weapon ActualWeapon{get{return actualWeapon;}set{actualWeapon = value;}}
+
+
+    // Use this for initialization
+    void Start () {
         nextFire = 0f;
 	}
 	
@@ -38,7 +43,7 @@ public class RangedAttack : MonoBehaviour {
         {
             Vector3 t = projectileSpawn.localEulerAngles;
             Projectile ammo =projectilePrefab.GetComponent<Projectile>();
-            switch(actualWeapon){
+            switch(ActualWeapon){
                 
                 case Weapon.AR:
                 break;
@@ -88,11 +93,14 @@ public class RangedAttack : MonoBehaviour {
     }
 
     public void BoostFireRate(float value){
-        fireRate-=value;
+        fireRate+=value;
     }
 
     public void UnboostFireRate(float value){
-         fireRate+=value;
+         fireRate=0;
     }
 
+    public void ChangeWeapon(Weapon wp){
+        actualWeapon=wp;
+    }
 }

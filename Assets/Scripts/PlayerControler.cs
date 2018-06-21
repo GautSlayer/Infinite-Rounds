@@ -365,7 +365,7 @@ public class PlayerControler : MonoBehaviour {
         GameManager.instance.PlayerDied();
     }
 
-    private void GetBoost(Items.Type item,float magn,float tps){
+    private void GetBoost(Items.Type item,float magn,float tps,RangedAttack.Weapon weapon){
         //// Cas du Soin
         if(item==Items.Type.HEALTH){         // necessite acces à Health
             health.Heal((int)magn);
@@ -376,6 +376,12 @@ public class PlayerControler : MonoBehaviour {
         else{
             // on verifie si on a deja eu ce type de boost
             if(memoryBoost.Contains(item)){     // Si on l'a déjà eu on refresh le timer
+                if(item==Items.Type.WEAPON){    // Si c'est une arme c'est un peu particulier 
+                    if(RangedAttack.ActualWeapon!=weapon){
+                        RangedAttack.ChangeWeapon(weapon);
+                    }
+
+                }
                 tempBoost[item]=tps;    
                 
             }
@@ -402,10 +408,14 @@ public class PlayerControler : MonoBehaviour {
                     RangedAttack.BoostDamage((int)magn);
                     break;
                     case Items.Type.REPAIR:
-                    
+                        if(interdictions!=0){ // sous interdiction
+                            EndPerturbation();
+                        }
+                        //// Possibilité de mettre un état de "non j'ai pas d'interdictions!" (necessiterai un acces au game manager...Ou pas....)
                     break;
                     case Items.Type.WEAPON:         // necessite acces à RangedAttacks
-                    
+                        RangedAttack.ChangeWeapon(weapon);
+                        
                     break;
                     default:
                     
@@ -438,7 +448,7 @@ public class PlayerControler : MonoBehaviour {
             
             break;
             case Items.Type.WEAPON:         // necessite acces à RangedAttacks
-            
+            RangedAttack.ChangeWeapon(RangedAttack.Weapon.DEFAULT);
             break;
             default:
             
@@ -455,7 +465,7 @@ public class PlayerControler : MonoBehaviour {
         if (other.tag=="Item"){
             Items it =other.GetComponent<Items>();
             Items.Type t = it.Type1;
-            GetBoost(t,it.Magnitude,it.Timer);
+            GetBoost(t,it.Magnitude,it.Timer,it.Weapon);
             GameObject.Destroy(other.gameObject);
         }
     }
