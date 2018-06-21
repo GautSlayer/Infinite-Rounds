@@ -10,12 +10,18 @@ public class MoveTowardPlayer : MonoBehaviour {
     //public float maxSwitchDirTimer = 1f;
 
     private Rigidbody2D myRb;
+    private Animator animator;
     private GameObject player;
-    //private float nextSwitchDir;
-    //private Vector2 movement;
+	//private float nextSwitchDir;
+	//private Vector2 movement;
 
-    // Use this for initialization
-    void Start () {
+	void Awake()
+	{
+        animator = GetComponentInChildren<Animator>();
+	}
+
+	// Use this for initialization
+	void Start () {
         myRb = GetComponent<Rigidbody2D>();
         player = GameManager.instance.player;
         //nextSwitchDir = 0;
@@ -56,7 +62,12 @@ public class MoveTowardPlayer : MonoBehaviour {
                 }
             }
             */
-            Vector2 movement = (diff.normalized) * (movementSpeed / 1000);
+
+            // Handle movement animation
+            Vector2 direction = diff.normalized;
+            HandleMoveAnimation(direction);
+
+            Vector2 movement = direction * (movementSpeed / 1000);
             Vector2 startPos = transform.position;
             myRb.MovePosition(startPos + movement);
         }
@@ -64,5 +75,11 @@ public class MoveTowardPlayer : MonoBehaviour {
         {
             myRb.MovePosition(this.transform.position);
         }
+    }
+
+    private void HandleMoveAnimation(Vector2 direction)
+    {
+        animator.SetFloat("FaceX", direction.x);
+        animator.SetFloat("FaceY", direction.y);
     }
 }
