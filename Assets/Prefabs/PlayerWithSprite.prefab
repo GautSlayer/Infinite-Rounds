@@ -230,7 +230,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &4078538089990226
 Transform:
   m_ObjectHideFlags: 1
@@ -621,8 +621,7 @@ MonoBehaviour:
   projectileSpawn: {fileID: 4964014205188092}
   projectileSpawnOffsetX: 1
   projectileSpawnOffsetY: 1
-  interdictionInfo: {fileID: 0}
-  interdictionHUD: {fileID: 0}
+  interdictionHUD: {fileID: 1987833135239310}
   interdictionUp: {fileID: 21300000, guid: d528d05d2437e4dd0bd88ac13acef9c6, type: 3}
   interdictionDown: {fileID: 21300000, guid: 35f03df047ed8461ebfdb150a73adb08, type: 3}
   interdictionLeft: {fileID: 21300000, guid: 32c4e604059b741eaa5782abe984c9d5, type: 3}
