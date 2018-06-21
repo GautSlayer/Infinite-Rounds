@@ -213,7 +213,7 @@ Prefab:
         type: 2}
       propertyPath: interdictionHUD
       value: 
-      objectReference: {fileID: 1607285274}
+      objectReference: {fileID: 1004224514}
     - target: {fileID: 224982963913467476, guid: a284bc968dff74777917e873cefaf4ba,
         type: 2}
       propertyPath: m_AnchorMax.x
@@ -222,6 +222,10 @@ Prefab:
     - target: {fileID: 224982963913467476, guid: a284bc968dff74777917e873cefaf4ba,
         type: 2}
       propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1987833135239310, guid: a284bc968dff74777917e873cefaf4ba, type: 2}
+      propertyPath: m_IsActive
       value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
@@ -236,6 +240,11 @@ MonoBehaviour:
 --- !u!1 &950517462 stripped
 GameObject:
   m_PrefabParentObject: {fileID: 1573938648226444, guid: a284bc968dff74777917e873cefaf4ba,
+    type: 2}
+  m_PrefabInternal: {fileID: 746826105}
+--- !u!1 &1004224514 stripped
+GameObject:
+  m_PrefabParentObject: {fileID: 1987833135239310, guid: a284bc968dff74777917e873cefaf4ba,
     type: 2}
   m_PrefabInternal: {fileID: 746826105}
 --- !u!114 &1048713729 stripped
@@ -386,11 +395,6 @@ Prefab:
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: aa2b444c37d2643a082d0d7a2851116a, type: 2}
   m_IsPrefabParent: 0
---- !u!1 &1607285274 stripped
-GameObject:
-  m_PrefabParentObject: {fileID: 1512349181981312, guid: dfbc81a741493354aaf3d62ff4ed64a8,
-    type: 2}
-  m_PrefabInternal: {fileID: 1892652898}
 --- !u!1001 &1892652898
 Prefab:
   m_ObjectHideFlags: 0
