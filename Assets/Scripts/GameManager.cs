@@ -32,6 +32,8 @@ public class GameManager : MonoBehaviour {
     private bool dying = false;
     private int roundNumber;
 
+    [SerializeField] AudioSource audioHit;
+
     void Awake()
     {
         if (instance != null)
@@ -78,7 +80,7 @@ public class GameManager : MonoBehaviour {
             }
             else // All enemy have spawned
             {
-                if(enemyKilledCount == numbOfEnemyPerRound) // Round won
+                if(enemyKilledCount >= numbOfEnemyPerRound) // Round won
                 {
                     Data.mobWaves.Buff();
                     Data.enemyStats.Buff();
@@ -171,6 +173,7 @@ public class GameManager : MonoBehaviour {
     {
         enemyKilledCount++;
         killcount.text = enemyKilledCount + " / " + numbOfEnemyPerRound;
+        audioHit.Play();
     }
 
     public void PlayerDied()

@@ -9,24 +9,32 @@ public class Health : MonoBehaviour {
     public Slider healthBar;
     bool isInvicible=false;
     private int currentHealth;
+    [SerializeField] AudioSource audioHit;
+    private bool isDead;
 
-	// Use this for initialization
-	void Start () {
+    // Use this for initialization
+    void Start () {
         currentHealth = maxHealth;
         healthBar.maxValue = maxHealth;
         healthBar.value = maxHealth;
+        isDead = false;
 	}
 
     public void TakeDamage(int damage)
     {
+        if(isDead)
+        {
+            return;
+        }
         if(!isInvicible){
             currentHealth -= damage;
             healthBar.value = currentHealth;
-
+            audioHit.Play();
             //if Health point = 0, destroy the root gameobject (temporary solution)
             //need a proper death animation
-            if(currentHealth <= 0)
+            if (currentHealth <= 0)
             {
+                isDead = true;
                 GameManager gameManager = GameManager.instance;
                 if(gameManager != null)
                 {

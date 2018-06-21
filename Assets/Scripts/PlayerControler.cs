@@ -47,7 +47,11 @@ public class PlayerControler : MonoBehaviour {
     // Animation
     private Animator animator;
     private bool dying = false;
-    
+
+    [SerializeField] List<AudioClip> audioLib;
+    [SerializeField] AudioSource audioEvent;
+    [SerializeField] AudioSource audioInter;
+
     void Awake()
     {
         animator = GetComponentInChildren<Animator>();
@@ -122,47 +126,6 @@ public class PlayerControler : MonoBehaviour {
             return;
         }
 
-        /*
-        //Move only in 4 directions
-        float vertical = 0;
-        float horizontal = 0;
-        //Get the lastTime vertical axe was pressed
-        if (Input.GetButtonDown("Vertical"))
-        {
-            lastPressedAxisVert = Time.time;
-        }
-        //when release return to 0 so the other axis is back to first priority
-        if (Input.GetButtonUp("Vertical"))
-        {
-            lastPressedAxisVert = 0;
-        }
-
-        //Get the lastTime horizontal axe was pressed
-        if (Input.GetButtonDown("Horizontal"))
-        {
-            lastPressedAxisHori = Time.time;
-        }
-        //when release return to 0 so the other axis is back to first priority
-        if (Input.GetButtonUp("Horizontal"))
-        {
-            lastPressedAxisHori = 0;
-        }
-
-        //Make the last input (vertical or horizontal prioritary)
-        if (lastPressedAxisVert > lastPressedAxisHori)
-        {
-            horizontal = 0;
-            //Get raw input ie 1,0,-1 with keyboard
-            vertical = Input.GetAxisRaw("Vertical");
-        }
-        else
-        {
-            //Get raw input ie 1,0,-1 with keyboard
-            horizontal = Input.GetAxisRaw("Horizontal");
-            vertical = 0;
-        }
-        */
-
         //Get raw input ie 1,0,-1 with keyboard
         float vertical = Input.GetAxisRaw("Vertical");
         if(interdictions==4){
@@ -233,24 +196,6 @@ public class PlayerControler : MonoBehaviour {
             {
                 OrienteProjectileSpawn(270);
             }
-            /*
-            if (aimVertical > 0 && aimHorizontal > 0) //right + up
-            {
-                OrienteProjectileSpawn(45);
-            }
-            if (aimVertical > 0 && aimHorizontal < 0) //left + up
-            {
-                OrienteProjectileSpawn(135);
-            }
-            if (aimVertical < 0 && aimHorizontal > 0) //right + down
-            {
-                OrienteProjectileSpawn(315);
-            }
-            if (aimVertical < 0 && aimHorizontal < 0) //left + down
-            {
-                OrienteProjectileSpawn(225);
-            }
-            */
         }
 
         // Handle animations
@@ -276,6 +221,8 @@ public class PlayerControler : MonoBehaviour {
     public void PlayerDying()
     {
         this.dying = true;
+        audioEvent.clip = audioLib[0];
+        audioEvent.Play();
     }
 
     //methode to orient (position + rotation) the projectile spawn with an angle in deg
@@ -287,7 +234,7 @@ public class PlayerControler : MonoBehaviour {
         {
             case 0: //right
                 {
-                    newPos = new Vector2(projectileSpawnOffsetX, 0);
+                    newPos = new Vector2(projectileSpawnOffsetX, 0 + 0.145f);
                     zRot = 0f;
                     break;
                 }
@@ -299,7 +246,7 @@ public class PlayerControler : MonoBehaviour {
                 }
             case 90: //up
                 {
-                    newPos = new Vector2(0, projectileSpawnOffsetY);
+                    newPos = new Vector2(0 + 0.13f, projectileSpawnOffsetY);
                     zRot = 90f;
                     break;
                 }
@@ -311,7 +258,7 @@ public class PlayerControler : MonoBehaviour {
                 }
             case 180: //left
                 {
-                    newPos = new Vector2(- projectileSpawnOffsetX, 0);
+                    newPos = new Vector2(- projectileSpawnOffsetX, 0 + 0.145f);
                     zRot = 180f;
                     break;
                 }
@@ -323,7 +270,7 @@ public class PlayerControler : MonoBehaviour {
                 }
             case 270: //down
                 {
-                    newPos = new Vector2(0, -projectileSpawnOffsetY);
+                    newPos = new Vector2(0 +0.13f, -projectileSpawnOffsetY);
                     zRot = 270f;
                     break;
                 }
@@ -346,6 +293,8 @@ public class PlayerControler : MonoBehaviour {
     }
 
     public void StartPerturbation(int interdiction){
+        audioInter.clip = audioLib[3];
+        audioInter.Play();
         Debug.Log("Handicap : "+interdiction );
         if(interdictions==0){
                 if (interdiction == 1)
@@ -405,8 +354,10 @@ public class PlayerControler : MonoBehaviour {
     }
 
     private void GetBoost(Items.Type item,float magn,float tps,RangedAttack.Weapon weapon){
+        audioEvent.clip = audioLib[1];
+        audioEvent.Play();
         //// Cas du Soin
-        if(item==Items.Type.HEALTH){         // necessite acces à Health
+        if (item==Items.Type.HEALTH){         // necessite acces à Health
             health.Heal((int)magn);
 
        }
@@ -466,7 +417,9 @@ public class PlayerControler : MonoBehaviour {
     }
 
     private void RemoveBoost(Items.Type stat){
-        switch(stat){
+        audioEvent.clip = audioLib[2];
+        audioEvent.Play();
+        switch (stat){
             case Items.Type.FIRERATE:       // necessite acces à RangedAttacks
             RangedAttack.UnboostFireRate(magnitudeBoost[stat]);
             break;

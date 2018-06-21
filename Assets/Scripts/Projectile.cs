@@ -29,7 +29,8 @@ public class Projectile : MonoBehaviour {
          //Get the root gameobject we collided with
         GameObject collisionGO = collision.transform.root.gameObject;
         //Ignore collision with the boundary and contactZone (we want the usual collider for the enemy, not their contactZone)
-        if(collisionGO.tag=="Projectile"||collisionGO.tag=="Item"||collisionGO.CompareTag("Boundary") || collision.CompareTag("ContactDamageZone") || collisionGO.CompareTag("Hole"))
+        if(collisionGO.tag=="Projectile"||collisionGO.tag=="Item"||collisionGO.CompareTag("Boundary") ||
+            collision.CompareTag("ContactDamageZone") || collisionGO.CompareTag("Hole") || collisionGO.CompareTag("Player"))
         {
             return;
         }

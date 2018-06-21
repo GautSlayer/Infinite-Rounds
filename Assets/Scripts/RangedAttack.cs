@@ -33,11 +33,11 @@ public class RangedAttack : MonoBehaviour {
 
     public Weapon ActualWeapon{get{return actualWeapon;}set{actualWeapon = value;}}
 
-    AudioSource audio;
+    [SerializeField] AudioSource audio;
     // Use this for initialization
     void Start () {
         nextFire = 0f;
-        audio = GetComponent<AudioSource>();
+        //audio = GetComponent<AudioSource>();
 
 	}
 	
