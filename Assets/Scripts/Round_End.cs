@@ -20,14 +20,14 @@ public class Round_End : MonoBehaviour {
         audioS = GetComponent<AudioSource>();
         if (lastRoundWin)
         {
-            lastRoundResult.text = "Round "+ Data.mobWaves.roundNumber + " Won !!";
-            nextRound.GetComponentInChildren<Text>().text = "Go Harder";
+            lastRoundResult.text = "Round   "+ Data.mobWaves.roundNumber + "   Won !!";
+            nextRound.GetComponentInChildren<Text>().text = "Go  Harder";
             audioS.clip = audioLib[0];
             audioS.Play();
         }
         else
         {
-            lastRoundResult.text = "Round " + Data.mobWaves.roundNumber + " lost !!";
+            lastRoundResult.text = "Round   " + Data.mobWaves.roundNumber + "   lost !!";
             nextRound.GetComponentInChildren<Text>().text = "Retry";
             audioS.clip = audioLib[1];
             audioS.Play();
