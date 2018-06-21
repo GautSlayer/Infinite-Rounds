@@ -167,6 +167,12 @@ Prefab:
       propertyPath: roundNumberText
       value: 
       objectReference: {fileID: 846916695}
+    - target: {fileID: 114801783587882538, guid: d3bbb65572585b54fae4aa1ca2ca2c89,
+        type: 2}
+      propertyPath: enemyPrefab
+      value: 
+      objectReference: {fileID: 1387776121203474, guid: 989203c6ef29f4f9394d50f2298048c3,
+        type: 2}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: d3bbb65572585b54fae4aa1ca2ca2c89, type: 2}
   m_IsPrefabParent: 0
