@@ -8,6 +8,8 @@ public class RangedAttack : MonoBehaviour {
     public GameObject projectilePrefab;
     public enum Weapon {DEFAULT ,SHOTGUN,MACHINEGUN,AR,ROCKETLAUNCHER,FLAMETHROWER};
     
+    [SerializeField] List<AudioClip> audioLib;
+    
     //// Damage
     [Header("Damage")]
     [SerializeField]int damageMG= 20;
@@ -31,10 +33,12 @@ public class RangedAttack : MonoBehaviour {
 
     public Weapon ActualWeapon{get{return actualWeapon;}set{actualWeapon = value;}}
 
-
+    AudioSource audio;
     // Use this for initialization
     void Start () {
         nextFire = 0f;
+        audio = GetComponent<AudioSource>();
+
 	}
 	
 	// Update is called once per frame
@@ -54,6 +58,8 @@ public class RangedAttack : MonoBehaviour {
                     Instantiate(projectilePrefab, projectileSpawn.position, Quaternion.Euler(0,0,t.z+20));
                     
                     Instantiate(projectilePrefab, projectileSpawn.position, Quaternion.Euler(0,0,t.z-20));
+                    audio.clip=audioLib[0];
+                    audio.Play();
                     nextFire = Time.time + fireRateShotgun*(1-FireRateBoost);
                 break;
                 case Weapon.FLAMETHROWER:
@@ -62,6 +68,8 @@ public class RangedAttack : MonoBehaviour {
                     ammo.damage=(damageMG)*(1+damageBoost);
                     Instantiate(projectilePrefab, projectileSpawn.position, Quaternion.Euler(0,0,t.z+Random.Range(-25,25)));
                     nextFire = Time.time + fireRateMG*(1-FireRateBoost);
+                     audio.clip=audioLib[2];
+                    audio.Play();
                     //nextFire = Time.time + fireRate;
                 break;
                 case Weapon.ROCKETLAUNCHER:
@@ -70,6 +78,8 @@ public class RangedAttack : MonoBehaviour {
                     ammo.damage=(damageDefault)*(1+damageBoost);
                     Instantiate(projectilePrefab, projectileSpawn.position, projectileSpawn.rotation);
                     nextFire = Time.time + fireRateDefault*(1-FireRateBoost);
+                     audio.clip=audioLib[1];
+                    audio.Play();
                 break;
                 default:
                 //nextFire = Time.time + fireRate;
