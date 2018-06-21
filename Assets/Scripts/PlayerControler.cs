@@ -28,6 +28,12 @@ public class PlayerControler : MonoBehaviour {
     Dictionary<Items.Type, float> tempBoost;
     Dictionary<Items.Type, float> magnitudeBoost;
     [SerializeField]List<Items.Type> memoryBoost; // principalement pour l'inspector
+
+    public Text invincibilityTimer;
+    public Text speedTimer;
+    public Text powerTimer;
+    public Text repairTimer;
+    public Text fireRateTimer;
     
     // Communication avec les autres scripts
     RangedAttack RangedAttack;
