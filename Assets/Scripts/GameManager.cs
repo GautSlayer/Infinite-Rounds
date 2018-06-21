@@ -73,8 +73,7 @@ public class GameManager : MonoBehaviour {
                 {
                     nextSpawn = Time.time + spawnRate;
                     enemySpawnedCount++;
-                    Vector3 randonOnCircle = Random.insideUnitCircle.normalized * randomRadiusSpawn;
-                    Instantiate(enemyPrefab, player.transform.position + randonOnCircle, Quaternion.identity);
+                    StartCoroutine("SpawnEnemy");
                 }
             }
             else // All enemy have spawned
@@ -96,6 +95,45 @@ public class GameManager : MonoBehaviour {
             dying = true;
         }
 	}
+
+    private IEnumerator SpawnEnemy()
+    {
+        Vector3 spawnPosition = Vector3.zero;
+
+        while (Vector2.Distance(player.transform.position, spawnPosition) < 7f)
+        {
+            if(Random.value > .5f) // on the left or right side of the map
+            {
+                if(Random.value > .5f) // left
+                {
+                    spawnPosition.x = -11f;
+                }
+                else // right
+                {
+                    spawnPosition.x = 9f;
+                }
+
+                spawnPosition.y = Random.Range(-11, 1);
+            }
+            else // on the top or bottom side of the map
+            {
+                if (Random.value > .5f) // top
+                {
+                    spawnPosition.y = 1f;
+                }
+                else // bottom
+                {
+                    spawnPosition.y = -11f;
+                }
+
+                spawnPosition.x = Random.Range(-11, 9);
+            }
+        }
+
+        Instantiate(enemyPrefab, spawnPosition, Quaternion.identity);
+
+        yield return null;
+    }
 
     private IEnumerator DieBeforeNewRound()
     {

@@ -173,6 +173,11 @@ Prefab:
       value: 
       objectReference: {fileID: 1956436783637860, guid: 989203c6ef29f4f9394d50f2298048c3,
         type: 2}
+    - target: {fileID: 114801783587882538, guid: d3bbb65572585b54fae4aa1ca2ca2c89,
+        type: 2}
+      propertyPath: randomRadiusSpawn
+      value: 10
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: d3bbb65572585b54fae4aa1ca2ca2c89, type: 2}
   m_IsPrefabParent: 0
@@ -185,11 +190,11 @@ Prefab:
     m_Modifications:
     - target: {fileID: 4584480318243870, guid: a284bc968dff74777917e873cefaf4ba, type: 2}
       propertyPath: m_LocalPosition.x
-      value: 0
+      value: -1
       objectReference: {fileID: 0}
     - target: {fileID: 4584480318243870, guid: a284bc968dff74777917e873cefaf4ba, type: 2}
       propertyPath: m_LocalPosition.y
-      value: 0
+      value: -5
       objectReference: {fileID: 0}
     - target: {fileID: 4584480318243870, guid: a284bc968dff74777917e873cefaf4ba, type: 2}
       propertyPath: m_LocalPosition.z
