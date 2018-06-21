@@ -287,7 +287,7 @@ Camera:
   far clip plane: 1000
   field of view: 60
   orthographic: 1
-  orthographic size: 5
+  orthographic size: 4
   m_Depth: -1
   m_CullingMask:
     serializedVersion: 2
@@ -366,7 +366,7 @@ AudioSource:
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 0}
   m_PlayOnAwake: 1
-  m_Volume: 1
+  m_Volume: 0.3
   m_Pitch: 1
   Loop: 0
   Mute: 0
@@ -556,7 +556,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9b796c083d7331b49996aa558880179c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  movementSpeed: 75
+  movementSpeed: 70
   projectileSpawn: {fileID: 4964014205188092}
   projectileSpawnOffsetX: 1
   projectileSpawnOffsetY: 1
@@ -644,10 +644,10 @@ MonoBehaviour:
   - {fileID: 8300000, guid: d9bd6b57b36e9944bae725d51145eb8d, type: 3}
   - {fileID: 8300000, guid: 2a9c93e8152f80241a90662c58d23a3e, type: 3}
   - {fileID: 8300000, guid: e6387831f554baf488dcc8f3667a80cb, type: 3}
-  damageMG: 20
-  damageShotgun: 20
-  damageAR: 20
-  damageDefault: 20
+  damageMG: 30
+  damageShotgun: 100
+  damageAR: 50
+  damageDefault: 40
   fireRateMG: 0.1
   fireRateShotgun: 1
   fireRateAR: 0.2

@@ -11,23 +11,31 @@ public class Round_End : MonoBehaviour {
 
     public Text lastRoundResult;
     public Button nextRound;
+    [SerializeField] List<AudioClip> audioLib;
+
+    private AudioSource audioS;
 
     private void Start()
     {
+        audioS = GetComponent<AudioSource>();
         if (lastRoundWin)
         {
             lastRoundResult.text = "Round "+ Data.mobWaves.roundNumber + " Won !!";
             nextRound.GetComponentInChildren<Text>().text = "Go Harder";
+            audioS.clip = audioLib[0];
+            audioS.Play();
         }
         else
         {
             lastRoundResult.text = "Round " + Data.mobWaves.roundNumber + " lost !!";
             nextRound.GetComponentInChildren<Text>().text = "Retry";
+            audioS.clip = audioLib[1];
+            audioS.Play();
         }
     }
     public void NewRound()
     {
-        SceneManager.LoadScene("Gauthier Test");
+        SceneManager.LoadScene("Horror City Level");
     }
 
     public void Quit()

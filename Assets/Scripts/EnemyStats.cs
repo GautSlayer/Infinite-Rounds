@@ -9,7 +9,7 @@ namespace Assets.Scripts
     [Serializable]
     class EnemyStats
     {
-        private float startMovementSpeed = 10f;
+        private float startMovementSpeed = 25f;
         private float startAttackSpeed = 1f;
         private int startDamage = 10;
         private int startMaxHealth = 25;
@@ -19,7 +19,7 @@ namespace Assets.Scripts
         public int damage;
         public int maxHealth;
 
-        private float maxMovementSpeed = 30f;
+        private float maxMovementSpeed = 65f;
         private float maxAttackSpeed = 0.2f;
         private int maxDamage = 100;
         private int maxMaxHealth = 400;
