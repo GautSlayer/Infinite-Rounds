@@ -33,7 +33,7 @@ public class Items : MonoBehaviour {
         spriteItem.sprite=spritesItems[0];
 
 		type = ((Type)Random.Range(0, 7)); 
-        spriteItem.transform.localScale=new Vector3(1.5f,1.5f,1);
+        spriteItem.transform.localScale=new Vector3(7f,7f,1);
 		switch(Type1){
             case Items.Type.FIRERATE:       // necessite acces à RangedAttacks
             Magnitude=0.25f;
@@ -61,7 +61,7 @@ public class Items : MonoBehaviour {
             spriteItem.sprite=spritesItems[4];
             break;
             case Items.Type.WEAPON:         // necessite acces à RangedAttacks
-            spriteItem.transform.localScale=new Vector3(0.5f,0.5f,1);
+            spriteItem.transform.localScale=new Vector3(1.5f,1.5f,1);
             weapon=((RangedAttack.Weapon)Random.Range(1,3));
             switch(weapon){
                 case RangedAttack.Weapon.SHOTGUN:
