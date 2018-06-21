@@ -8,13 +8,10 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/Start_Menu.unity
     guid: c107796900d6e6945a7ad42158beb1f9
-  - enabled: 0
-    path: Assets/Scenes/Gauthier Test.unity
-    guid: 00fffabff34f0104f83665bdf41fd0bf
-  - enabled: 1
-    path: Assets/Scenes/Round_End.unity
-    guid: 938f843c539d8e34685ca7549f53c3e3
   - enabled: 1
     path: Assets/Scenes/Horror City Level.unity
     guid: dbfc2c7ba270e90419d2419729b64faf
+  - enabled: 1
+    path: Assets/Scenes/Round_End.unity
+    guid: 938f843c539d8e34685ca7549f53c3e3
   m_configObjects: {}
