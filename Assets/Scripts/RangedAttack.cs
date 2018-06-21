@@ -23,7 +23,7 @@ public class RangedAttack : MonoBehaviour {
     [SerializeField]float fireRateAR= 0.2f;
     [SerializeField]float fireRateDefault= 0.5f;
     //// Boost
-    int damageBoost= 0 ;
+    float damageBoost= 0 ;
     float FireRateBoost = 0 ;
     
     [SerializeField]Weapon actualWeapon = Weapon.DEFAULT;
@@ -52,7 +52,7 @@ public class RangedAttack : MonoBehaviour {
                 case Weapon.AR:
                 break;
                 case Weapon.SHOTGUN:
-                    ammo.damage=(damageShotgun)*(1+damageBoost);
+                    ammo.damage=(int)((damageShotgun)*(1+damageBoost));
                     Instantiate(projectilePrefab, projectileSpawn.position, Quaternion.Euler(0,0,t.z));
                     
                     Instantiate(projectilePrefab, projectileSpawn.position, Quaternion.Euler(0,0,t.z+20));
@@ -65,7 +65,7 @@ public class RangedAttack : MonoBehaviour {
                 case Weapon.FLAMETHROWER:
                 break;
                 case Weapon.MACHINEGUN:
-                    ammo.damage=(damageMG)*(1+damageBoost);
+                    ammo.damage=(int)((damageMG)*(1+damageBoost));
                     Instantiate(projectilePrefab, projectileSpawn.position, Quaternion.Euler(0,0,t.z+Random.Range(-25,25)));
                     nextFire = Time.time + fireRateMG*(1-FireRateBoost);
                      audio.clip=audioLib[2];
@@ -75,7 +75,7 @@ public class RangedAttack : MonoBehaviour {
                 case Weapon.ROCKETLAUNCHER:
                 break;
                 case Weapon.DEFAULT:
-                    ammo.damage=(damageDefault)*(1+damageBoost);
+                    ammo.damage=(int)((damageDefault)*(1+damageBoost));
                     Instantiate(projectilePrefab, projectileSpawn.position, projectileSpawn.rotation);
                     nextFire = Time.time + fireRateDefault*(1-FireRateBoost);
                      audio.clip=audioLib[1];
@@ -92,22 +92,22 @@ public class RangedAttack : MonoBehaviour {
             
         }
 	}
-    public void BoostDamage(int value){
+    public void BoostDamage(float value){
         //projectilePrefab.GetComponent<Projectile>().damage+=value;
         damageBoost=value;
     }
 
-    public void UnboostDamage(int value){
+    public void UnboostDamage(float value){
         //projectilePrefab.GetComponent<Projectile>().damage-=value;
         damageBoost=0;
     }
 
     public void BoostFireRate(float value){
-        fireRate+=value;
+        FireRateBoost=value;
     }
 
     public void UnboostFireRate(float value){
-         fireRate=0;
+        FireRateBoost=0;
     }
 
     public void ChangeWeapon(Weapon wp){

@@ -525,6 +525,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b25a4625fcacac940b8b99728728a01d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  item: {fileID: 1936944842858884, guid: adde102bdb66a6546a46b343a34b38fd, type: 2}
+  seuilDrop: 80
 --- !u!212 &212106676595937566
 SpriteRenderer:
   m_ObjectHideFlags: 1

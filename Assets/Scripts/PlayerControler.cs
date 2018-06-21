@@ -415,7 +415,7 @@ public class PlayerControler : MonoBehaviour {
                         movementSpeed+=magn;
                     break;
                     case Items.Type.POWER:          // necessite acces à RangedAttacks
-                    RangedAttack.BoostDamage((int)magn);
+                    RangedAttack.BoostDamage(magn);
                     break;
                     case Items.Type.REPAIR:
                         if(interdictions!=0){ // sous interdiction
@@ -452,7 +452,7 @@ public class PlayerControler : MonoBehaviour {
 
             break;
             case Items.Type.POWER:          // necessite acces à RangedAttacks
-            RangedAttack.UnboostDamage((int)magnitudeBoost[stat]);
+            RangedAttack.UnboostDamage(magnitudeBoost[stat]);
             break;
             case Items.Type.REPAIR:
             

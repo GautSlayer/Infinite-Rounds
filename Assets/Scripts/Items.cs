@@ -40,7 +40,7 @@ public class Items : MonoBehaviour {
             spriteItem.sprite=spritesItems[5];
             break;
             case Items.Type.HEALTH:         // necessite acces à Health
-            Magnitude=20;
+            Magnitude=50;
             spriteItem.sprite=spritesItems[0];
             break;
             case Items.Type.INVICIBILITY:   // necessite acces à Health

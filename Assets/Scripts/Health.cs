@@ -55,6 +55,7 @@ public class Health : MonoBehaviour {
         else{
             currentHealth+=heal;
         }
+        healthBar.value = currentHealth;
     }
 
     public void SwitchInviciblity(){

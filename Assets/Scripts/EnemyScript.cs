@@ -5,6 +5,8 @@ using UnityEngine;
 
 public class EnemyScript : MonoBehaviour {
 
+    [SerializeField] GameObject item;
+    [SerializeField] int seuilDrop=90;
     private MoveTowardPlayer moveTowardPlayerScript;
     private ContactDamage contactDamageScript;
     private Health healthScript;
@@ -22,4 +24,12 @@ public class EnemyScript : MonoBehaviour {
         contactDamageScript.damage = Data.enemyStats.damage;
         healthScript.maxHealth = Data.enemyStats.maxHealth;
 	}
+
+    private void OnDestroy()
+    {
+        int rand = Random.Range(0,101);
+        if(rand>seuilDrop){
+            Instantiate(item,transform.position,transform.rotation);
+        }
+    }
 }
