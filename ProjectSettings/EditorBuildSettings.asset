@@ -14,4 +14,7 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/Round_End.unity
     guid: 938f843c539d8e34685ca7549f53c3e3
+  - enabled: 1
+    path: Assets/Scenes/Horror City Level.unity
+    guid: dbfc2c7ba270e90419d2419729b64faf
   m_configObjects: {}

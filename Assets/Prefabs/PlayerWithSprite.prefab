@@ -178,7 +178,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!1 &1853701744155372
 GameObject:
   m_ObjectHideFlags: 1
@@ -242,7 +242,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1573938648226444}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: -1, y: -5, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 4158498061416120}
@@ -465,6 +465,14 @@ MonoBehaviour:
   projectileSpawnOffsetX: 1
   projectileSpawnOffsetY: 1
   interdictionInfo: {fileID: 114886747237428004}
+  interdictionHUD: {fileID: 0}
+  interdictionUp: {fileID: 21300000, guid: d528d05d2437e4dd0bd88ac13acef9c6, type: 3}
+  interdictionDown: {fileID: 21300000, guid: 35f03df047ed8461ebfdb150a73adb08, type: 3}
+  interdictionLeft: {fileID: 21300000, guid: 32c4e604059b741eaa5782abe984c9d5, type: 3}
+  interdictionRight: {fileID: 21300000, guid: b2caf8f4fce22422abdfc0c6c4c5353a, type: 3}
+  interdictionReverse: {fileID: 21300000, guid: 7fb8f7db224ef4df9a83103486913a8a,
+    type: 3}
+  interdictionShoot: {fileID: 21300008, guid: 1ef3078dee60f5045a022dc868b0cc0f, type: 3}
   interdictions: 0
   recov_time: 5
   memoryBoost: 
@@ -534,8 +542,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   projectileSpawn: {fileID: 4964014205188092}
-  projectilePrefab: {fileID: 1834612414814150, guid: e40811c55a24eb2408cac32b87d9df39,
+  projectilePrefab: {fileID: 1989275741103428, guid: fc9fb0ad3512544b68d704e056e1631b,
     type: 2}
+  audioLib: []
   damageMG: 20
   damageShotgun: 20
   damageAR: 20
@@ -544,8 +553,6 @@ MonoBehaviour:
   fireRateShotgun: 1
   fireRateAR: 0.2
   fireRateDefault: 0.5
-  damageBoost: 0
-  FireRateBoost: 0
   actualWeapon: 0
   fireRate: 0.1
   handicap: 0

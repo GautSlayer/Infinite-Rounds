@@ -220,6 +220,11 @@ Prefab:
       propertyPath: m_RootOrder
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 114319804023105312, guid: a284bc968dff74777917e873cefaf4ba,
+        type: 2}
+      propertyPath: interdictionHUD
+      value: 
+      objectReference: {fileID: 1607285274}
     - target: {fileID: 224982963913467476, guid: a284bc968dff74777917e873cefaf4ba,
         type: 2}
       propertyPath: m_AnchorMax.x
@@ -292,6 +297,11 @@ Prefab:
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: aa2b444c37d2643a082d0d7a2851116a, type: 2}
   m_IsPrefabParent: 0
+--- !u!1 &1607285274 stripped
+GameObject:
+  m_PrefabParentObject: {fileID: 1512349181981312, guid: dfbc81a741493354aaf3d62ff4ed64a8,
+    type: 2}
+  m_PrefabInternal: {fileID: 1892652898}
 --- !u!1001 &1892652898
 Prefab:
   m_ObjectHideFlags: 0
@@ -299,11 +309,6 @@ Prefab:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 224383766682034654, guid: dfbc81a741493354aaf3d62ff4ed64a8,
-        type: 2}
-      propertyPath: m_RootOrder
-      value: 3
-      objectReference: {fileID: 0}
     - target: {fileID: 224383766682034654, guid: dfbc81a741493354aaf3d62ff4ed64a8,
         type: 2}
       propertyPath: m_LocalPosition.x
@@ -394,31 +399,8 @@ Prefab:
       propertyPath: m_Pivot.y
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 114313720309291634, guid: dfbc81a741493354aaf3d62ff4ed64a8,
-        type: 2}
-      propertyPath: m_FontData.m_Font
-      value: 
-      objectReference: {fileID: 12800000, guid: 0e2f3cc82c877dd498854d3394c3f74d,
-        type: 3}
-    - target: {fileID: 114592295794858750, guid: dfbc81a741493354aaf3d62ff4ed64a8,
-        type: 2}
-      propertyPath: m_FontData.m_Font
-      value: 
-      objectReference: {fileID: 12800000, guid: 0e2f3cc82c877dd498854d3394c3f74d,
-        type: 3}
-    - target: {fileID: 114592295794858750, guid: dfbc81a741493354aaf3d62ff4ed64a8,
-        type: 2}
-      propertyPath: m_FontData.m_Alignment
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 114313720309291634, guid: dfbc81a741493354aaf3d62ff4ed64a8,
-        type: 2}
-      propertyPath: m_FontData.m_Alignment
-      value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 223152135442345572, guid: dfbc81a741493354aaf3d62ff4ed64a8,
-        type: 2}
-      propertyPath: m_PixelPerfect
+    - target: {fileID: 1512349181981312, guid: dfbc81a741493354aaf3d62ff4ed64a8, type: 2}
+      propertyPath: m_IsActive
       value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []

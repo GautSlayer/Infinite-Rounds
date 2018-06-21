@@ -11,6 +11,15 @@ public class PlayerControler : MonoBehaviour {
     public float projectileSpawnOffsetY;
     public Text interdictionInfo;
 
+    public GameObject interdictionHUD;
+    private Image interdictionSprite;
+    public Sprite interdictionUp;
+    public Sprite interdictionDown;
+    public Sprite interdictionLeft;
+    public Sprite interdictionRight;
+    public Sprite interdictionReverse;
+    public Sprite interdictionShoot;
+
     // Gestion des dysfonctionnement : 0- aucune ; 1- tir ; 2-mvt_horizontal ; 3-mvt_vertical 
     public int interdictions = 0;
     public float recov_time=5;
@@ -51,6 +60,7 @@ public class PlayerControler : MonoBehaviour {
         EndPerturbation();
         lastPressedAxisVert = 0;
         lastPressedAxisHori = 0;
+        interdictionSprite = interdictionHUD.GetComponent<Image>();
     }
 	
     private void FixedUpdate()
@@ -312,25 +322,43 @@ public class PlayerControler : MonoBehaviour {
         if(interdictions==0){
             if(interdictionInfo != null)
             {
-                if(interdiction==1)
-                    interdictionInfo.text= "Tir impossible";
-                else if(interdiction==2)
-                    interdictionInfo.text="Mvt gauche impossible";
-                else if(interdiction==3)
-                    interdictionInfo.text="Mvt droit impossible";
-                else if(interdiction==4)
-                    interdictionInfo.text="Mvt bas impossible";
-                else if(interdiction==5)
-                    interdictionInfo.text="Mvt haut impossible";
-                else if(interdiction==6)
-                interdictionInfo.text="Mvt inversés";
-                
+                if (interdiction == 1)
+                {
+                    interdictionInfo.text = "Tir impossible";
+                    interdictionSprite.sprite = interdictionShoot;
+                }
+                else if (interdiction == 2)
+                {
+                    interdictionInfo.text = "Mvt gauche impossible";
+                    interdictionSprite.sprite = interdictionLeft;
+                }
+                else if (interdiction == 3)
+                {
+                    interdictionInfo.text = "Mvt droit impossible";
+                    interdictionSprite.sprite = interdictionRight;
+                }
+                else if (interdiction == 4)
+                {
+                    interdictionInfo.text = "Mvt bas impossible";
+                    interdictionSprite.sprite = interdictionDown;
+                }
+                else if (interdiction == 5)
+                {
+                    interdictionInfo.text = "Mvt haut impossible";
+                    interdictionSprite.sprite = interdictionUp;
+                }
+                else if (interdiction == 6)
+                {
+                    interdictionInfo.text = "Mvt inversés";
+                    interdictionSprite.sprite = interdictionReverse;
+                }
             }
             else
             {
                 Debug.Log("GameObject Tagged Player miss the StatusText");
             }
 
+            interdictionHUD.SetActive(true);
 
             if(interdiction==1){
                 gameObject.GetComponent<RangedAttack>().handicap=true;
@@ -352,6 +380,8 @@ public class PlayerControler : MonoBehaviour {
             {
                 Debug.Log("GameObject Tagged Player miss the StatusText");
             }
+
+        interdictionHUD.SetActive(false);
         
         Debug.Log("Fin de perturbation : "+interdictions);
         if(interdictions==1){

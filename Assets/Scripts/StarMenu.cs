@@ -10,7 +10,7 @@ public class StarMenu : MonoBehaviour {
     public void NewGame()
     {
         Data.NewGame();
-        SceneManager.LoadScene("Gauthier Test");
+        SceneManager.LoadScene("Horror City Level");
     }
 
     public void ContinueGame()
@@ -18,7 +18,7 @@ public class StarMenu : MonoBehaviour {
         Data.LoadData();
         if(Data.mobWaves != null && Data.enemyStats != null)
         {
-            SceneManager.LoadScene("Gauthier Test");
+            SceneManager.LoadScene("Horror City Level");
         }
         else
         {
