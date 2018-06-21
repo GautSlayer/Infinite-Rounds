@@ -9,7 +9,6 @@ public class PlayerControler : MonoBehaviour {
     public Transform projectileSpawn;
     public float projectileSpawnOffsetX;
     public float projectileSpawnOffsetY;
-    public Text interdictionInfo;
 
     public GameObject interdictionHUD;
     private Image interdictionSprite;
@@ -320,36 +319,28 @@ public class PlayerControler : MonoBehaviour {
     public void StartPerturbation(int interdiction){
         Debug.Log("Handicap : "+interdiction );
         if(interdictions==0){
-            if(interdictionInfo != null)
-            {
                 if (interdiction == 1)
                 {
-                    interdictionInfo.text = "Tir impossible";
                     interdictionSprite.sprite = interdictionShoot;
                 }
                 else if (interdiction == 2)
                 {
-                    interdictionInfo.text = "Mvt gauche impossible";
                     interdictionSprite.sprite = interdictionLeft;
                 }
                 else if (interdiction == 3)
                 {
-                    interdictionInfo.text = "Mvt droit impossible";
                     interdictionSprite.sprite = interdictionRight;
                 }
                 else if (interdiction == 4)
                 {
-                    interdictionInfo.text = "Mvt bas impossible";
                     interdictionSprite.sprite = interdictionDown;
                 }
                 else if (interdiction == 5)
                 {
-                    interdictionInfo.text = "Mvt haut impossible";
                     interdictionSprite.sprite = interdictionUp;
                 }
                 else if (interdiction == 6)
                 {
-                    interdictionInfo.text = "Mvt inversés";
                     interdictionSprite.sprite = interdictionReverse;
                 }
             }
@@ -366,21 +357,10 @@ public class PlayerControler : MonoBehaviour {
             }
             interdictions=interdiction;
             recov_interdiction=Time.time+recov_time;
-            
-        }
     }
 
-    void EndPerturbation(){
-
-            if(interdictionInfo != null)
-            {
-                interdictionInfo.text= "";
-            }
-            else
-            {
-                Debug.Log("GameObject Tagged Player miss the StatusText");
-            }
-
+    void EndPerturbation()
+    {
         interdictionHUD.SetActive(false);
         
         Debug.Log("Fin de perturbation : "+interdictions);
