@@ -79,11 +79,34 @@ public class PlayerControler : MonoBehaviour {
             List<Items.Type> keys = new List<Items.Type> (tempBoost.Keys);
             
             foreach(Items.Type t in keys){
+                Text timerText = null;
+                switch (t)
+                {
+                    case Items.Type.INVICIBILITY:
+                        timerText = invincibilityTimer;
+                        break;
+                    case Items.Type.MVTSPEED:
+                        timerText = speedTimer;
+                        break;
+                    case Items.Type.POWER:
+                        timerText = powerTimer;
+                        break;
+                    case Items.Type.REPAIR:
+                        timerText = repairTimer;
+                        break;
+                    case Items.Type.FIRERATE:
+                        timerText = fireRateTimer;
+                        break;
+                }
+
                 if(tempBoost[t]>0){
+                    if(timerText)
+                        timerText.text = tempBoost[t].ToString();
                     tempBoost[t]-=Time.deltaTime;   // Didn't find better way
-                    
                 }
                 else{
+                    if(timerText)
+                        timerText.text = "0";
                     RemoveBoost(t);
                 }
             }
